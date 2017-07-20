@@ -36,18 +36,19 @@ A `throw` expression allows you to throw exceptions in expression contexts. For 
 
 A `throw` expression *does not* replace a `throw` statement due to the difference 
 in the precedence of their values. To maintain the precedence of the `throw` statement,
-*ThrowStatement* must be parsed ahead of *ExpressionStatement* in the grammar.
+we must add a lookahead restriction to `ExpressionStatement` to avoid ambiguity.
 
 # Grammar
 
 ```grammarkdown
 AssignmentExpression[In, Yield, Await]:
-  ...
   ThrowExpression[?In, ?Yield, ?Await]
-  ...
 
 ThrowExpression[In, Yield, Await]:
   `throw` [no LineTerminator here] AssignmentExpression[?In, ?Yield, ?Await]
+
+ExpressionStatement[Yield, Await]:
+  [lookahead ∉ {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`, `throw`}] Expression[+In, ?Yield, ?Await] `;`
 ```
 
 # Other Notes
