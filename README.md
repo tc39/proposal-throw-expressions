@@ -52,11 +52,8 @@ we must add a lookahead restriction to `ExpressionStatement` to avoid ambiguity.
 # Grammar
 
 ```grammarkdown
-AssignmentExpression[In, Yield, Await]:
-  ThrowExpression[?In, ?Yield, ?Await]
-
-ThrowExpression[In, Yield, Await]:
-  `throw` [no LineTerminator here] AssignmentExpression[?In, ?Yield, ?Await]
+UnaryExpression[Yield, Await]:
+  `throw` UnaryExpression[?Yield, ?Await]
 
 ExpressionStatement[Yield, Await]:
   [lookahead ∉ {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`, `throw`}] Expression[+In, ?Yield, ?Await] `;`
@@ -110,7 +107,7 @@ The following is a high-level list of tasks to progress through each stage of th
 
 ### Stage 2 Entrance Criteria
 
-* [ ] [Initial specification text][Specification].  
+* [x] [Initial specification text][Specification].  
 * [ ] _Optional_. [Transpiler support][Transpiler].  
 
 ### Stage 3 Entrance Criteria

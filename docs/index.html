@@ -4,15 +4,83 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <link rel="spec" href="es2015">
 <script src="ecmarkup.js"></script>
-<title>ECMAScript 'throw' expressions</title><script type="application/json" id="menu-search-biblio">[{"type":"clause","id":"sec-intro","aoid":null,"title":"Introduction","titleHTML":"Introduction","number":"","namespace":"<no location>","location":"","referencingIds":[],"key":"Introduction"},{"type":"clause","id":"sec-copyright-and-software-license","aoid":null,"title":"Copyright & Software License","titleHTML":"Copyright &amp; Software License","number":"A","namespace":"<no location>","location":"","referencingIds":[],"key":"Copyright & Software License"}]</script></head><body><div id="menu-toggle">☰</div><div id="menu-spacer"></div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-pins"><div class="menu-pane-header">Pins</div><ul id="menu-pins-list"></ul></div><div class="menu-pane-header">Table of Contents</div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-intro" title="Introduction">Introduction</a></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div><div id="spec-container"><h1 class="version first">Stage 0 Draft / July 15, 2017</h1><h1 class="title">ECMAScript 'throw' expressions</h1>
+<title>ECMAScript 'throw' expressions</title><script type="application/json" id="menu-search-biblio">[{"type":"clause","id":"sec-intro","aoid":null,"title":"Introduction","titleHTML":"Introduction","number":"","namespace":"<no location>","location":"","referencingIds":[],"key":"Introduction"},{"type":"production","id":"prod-UnaryExpression","name":"UnaryExpression","referencingIds":["_ref_2","_ref_3","_ref_4","_ref_5","_ref_6","_ref_7","_ref_8","_ref_9","_ref_10","_ref_11","_ref_12","_ref_13","_ref_14","_ref_15","_ref_16","_ref_17","_ref_18","_ref_19","_ref_20","_ref_21","_ref_22","_ref_23","_ref_24","_ref_25","_ref_26","_ref_27"],"namespace":"<no location>","location":"","key":"UnaryExpression"},{"type":"clause","id":"sec-unary-operators-static-semantics-isfunctiondefinition","aoid":null,"title":"Static Semantics: IsFunctionDefinition","titleHTML":"Static Semantics: IsFunctionDefinition","number":"1.1.1","namespace":"<no location>","location":"","referencingIds":[],"key":"Static Semantics: IsFunctionDefinition"},{"type":"clause","id":"sec-unary-operators","aoid":null,"title":"Unary Operators","titleHTML":"Unary Operators","number":"1.1","namespace":"<no location>","location":"","referencingIds":[],"key":"Unary Operators"},{"type":"clause","id":"sec-unary-operators-static-semantics-isvalidsimpleassignmenttarget","aoid":null,"title":"Static Semantics: IsValidSimpleAssignmentTarget","titleHTML":"Static Semantics: IsValidSimpleAssignmentTarget","number":"1.2","namespace":"<no location>","location":"","referencingIds":[],"key":"Static Semantics: IsValidSimpleAssignmentTarget"},{"type":"clause","id":"sec-throw-operator-runtime-semantics-evaluation","aoid":null,"title":"Runtime Semantics: Evaluation","titleHTML":"Runtime Semantics: Evaluation","number":"1.3.1","namespace":"<no location>","location":"","referencingIds":[],"key":"Runtime Semantics: Evaluation"},{"type":"clause","id":"sec-throw-operator","aoid":null,"title":"The throw Operator","titleHTML":"<ins>The <code>throw</code> Operator</ins>","number":"1.3","namespace":"<no location>","location":"","referencingIds":[],"key":"The throw Operator"},{"type":"clause","id":"sec-ecmascript-language-expressions","aoid":null,"title":"ECMAScript Language: Expressions","titleHTML":"ECMAScript Language: Expressions","number":"1","namespace":"<no location>","location":"","referencingIds":[],"key":"ECMAScript Language: Expressions"},{"type":"clause","id":"sec-copyright-and-software-license","aoid":null,"title":"Copyright & Software License","titleHTML":"Copyright &amp; Software License","number":"A","namespace":"<no location>","location":"","referencingIds":[],"key":"Copyright & Software License"}]</script></head><body><div id="menu-toggle">☰</div><div id="menu-spacer"></div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-pins"><div class="menu-pane-header">Pins</div><ul id="menu-pins-list"></ul></div><div class="menu-pane-header">Table of Contents</div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-intro" title="Introduction">Introduction</a></li><li><span class="item-toggle">◢</span><a href="#sec-ecmascript-language-expressions" title="ECMAScript Language: Expressions"><span class="secnum">1</span> ECMAScript Language: Expressions</a><ol class="toc"><li><span class="item-toggle">◢</span><a href="#sec-unary-operators" title="Unary Operators"><span class="secnum">1.1</span> Unary Operators</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-unary-operators-static-semantics-isfunctiondefinition" title="Static Semantics: IsFunctionDefinition"><span class="secnum">1.1.1</span> SS: IsFunctionDefinition</a></li></ol></li><li><span class="item-toggle-none"></span><a href="#sec-unary-operators-static-semantics-isvalidsimpleassignmenttarget" title="Static Semantics: IsValidSimpleAssignmentTarget"><span class="secnum">1.2</span> SS: IsValidSimpleAssignmentTarget</a></li><li><span class="item-toggle">◢</span><a href="#sec-throw-operator" title="The throw Operator"><span class="secnum">1.3</span> <ins>The <code>throw</code> Operator</ins></a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-throw-operator-runtime-semantics-evaluation" title="Runtime Semantics: Evaluation"><span class="secnum">1.3.1</span> RS: Evaluation</a></li></ol></li></ol></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div><div id="spec-container"><h1 class="version first">Stage 0 Draft / September 11, 2017</h1><h1 class="title">ECMAScript 'throw' expressions</h1>
 
 <emu-intro id="sec-intro">
     <h1>Introduction</h1>
-    <emu-import href="sec-introduction.html"><p>Forthcoming</p>
+    <emu-import href="sec-introduction.html"><p>This proposal defines new syntax to throw exceptions from within an expression context.</p>
 <p>See  <a href="https://github.com/rbuckton/proposal-throw-expressions">the proposal repository</a> for background material and discussion.</p></emu-import>
 </emu-intro>
 
-<emu-annex id="sec-copyright-and-software-license">
+<emu-clause id="sec-ecmascript-language-expressions">
+    <h1><span class="secnum">1</span>ECMAScript Language: Expressions</h1>
+    <emu-import href="sec-unary-operators-patch.html"><emu-clause id="sec-unary-operators">
+  <h1><span class="secnum">1.1</span>Unary Operators</h1>
+  <h2>Syntax</h2>
+  <emu-grammar type="definition"><emu-production name="UnaryExpression" params="Yield, Await" id="prod-UnaryExpression">
+    <emu-nt params="Yield, Await"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[Yield, Await]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="9511ff89"><emu-nt params="?Yield, ?Await"><a href="https://tc39.github.io/ecma262/#prod-UpdateExpression">UpdateExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="a87e936a"><emu-t>delete</emu-t><emu-nt params="?Yield, ?Await" id="_ref_2"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="7774f70f"><emu-t>void</emu-t><emu-nt params="?Yield, ?Await" id="_ref_3"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="693155d5"><emu-t>typeof</emu-t><emu-nt params="?Yield, ?Await" id="_ref_4"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs><ins>
+    <emu-rhs a="e8b41f32"><emu-t>throw</emu-t><emu-nt params="?Yield, ?Await" id="_ref_5"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs></ins>
+    <emu-rhs a="d735fe16"><emu-t>+</emu-t><emu-nt params="?Yield, ?Await" id="_ref_6"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="2de86f5f"><emu-t>-</emu-t><emu-nt params="?Yield, ?Await" id="_ref_7"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="995c05b5"><emu-t>~</emu-t><emu-nt params="?Yield, ?Await" id="_ref_8"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="0a6edf36"><emu-t>!</emu-t><emu-nt params="?Yield, ?Await" id="_ref_9"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="1585c1b3" constraints="+Await"><emu-constraints>[+Await]</emu-constraints><emu-nt params="?Yield"><a href="https://tc39.github.io/ecma262/#prod-AwaitExpression">AwaitExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+
+  <!-- es6num="12.5.2" -->
+  <emu-clause id="sec-unary-operators-static-semantics-isfunctiondefinition">
+    <h1><span class="secnum">1.1.1</span>Static Semantics: IsFunctionDefinition</h1>
+    <emu-see-also-para op="IsFunctionDefinition"></emu-see-also-para>
+    <emu-grammar><emu-production name="UnaryExpression">
+    <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="bfdc08c3"><emu-t>delete</emu-t><emu-nt id="_ref_10"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="e5d8038f"><emu-t>void</emu-t><emu-nt id="_ref_11"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="ab1a2cb9"><emu-t>typeof</emu-t><emu-nt id="_ref_12"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs><ins>
+    <emu-rhs a="e8b41f32"><emu-t>throw</emu-t><emu-nt params="?Yield, ?Await" id="_ref_13"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs></ins>
+    <emu-rhs a="3b49039a"><emu-t>+</emu-t><emu-nt id="_ref_14"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="a03cca5c"><emu-t>-</emu-t><emu-nt id="_ref_15"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="07d36a79"><emu-t>~</emu-t><emu-nt id="_ref_16"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="b8b0af72"><emu-t>!</emu-t><emu-nt id="_ref_17"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="48794e9a"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-AwaitExpression">AwaitExpression</a></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+    <emu-alg><ol><li>Return <emu-val>false</emu-val>.
+    </li></ol></emu-alg>
+  </emu-clause>
+</emu-clause>
+
+<!-- es6num="12.5.3" -->
+<emu-clause id="sec-unary-operators-static-semantics-isvalidsimpleassignmenttarget">
+  <h1><span class="secnum">1.2</span>Static Semantics: IsValidSimpleAssignmentTarget</h1>
+  <emu-see-also-para op="IsValidSimpleAssignmentTarget"></emu-see-also-para>
+  <emu-grammar><emu-production name="UnaryExpression">
+    <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="bfdc08c3"><emu-t>delete</emu-t><emu-nt id="_ref_18"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="e5d8038f"><emu-t>void</emu-t><emu-nt id="_ref_19"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="ab1a2cb9"><emu-t>typeof</emu-t><emu-nt id="_ref_20"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs><ins>
+    <emu-rhs a="e8b41f32"><emu-t>throw</emu-t><emu-nt params="?Yield, ?Await" id="_ref_21"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt></emu-rhs></ins>
+    <emu-rhs a="3b49039a"><emu-t>+</emu-t><emu-nt id="_ref_22"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="a03cca5c"><emu-t>-</emu-t><emu-nt id="_ref_23"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="07d36a79"><emu-t>~</emu-t><emu-nt id="_ref_24"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="b8b0af72"><emu-t>!</emu-t><emu-nt id="_ref_25"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+    <emu-rhs a="48794e9a"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-AwaitExpression">AwaitExpression</a></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+  <emu-alg><ol><li>Return <emu-val>false</emu-val>.
+  </li></ol></emu-alg>
+</emu-clause>
+
+<emu-clause id="sec-throw-operator">
+  <h1><span class="secnum">1.3</span><ins>The <code>throw</code> Operator</ins></h1>
+  <emu-clause id="sec-throw-operator-runtime-semantics-evaluation">
+    <h1><span class="secnum">1.3.1</span>Runtime Semantics: Evaluation</h1>
+    <emu-grammar><emu-production name="UnaryExpression" collapsed="">
+    <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="a9773da8"><emu-t>throw</emu-t><emu-nt id="_ref_26"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+    <emu-alg><ol><li>Let <var>exprRef</var> be the result of evaluating <emu-nt id="_ref_27"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>.</li><li>Let <var>exprValue</var> be ?&nbsp;<emu-xref aoid="GetValue" id="_ref_0"><a href="https://tc39.github.io/ecma262/#sec-getvalue">GetValue</a></emu-xref>(<var>exprRef</var>).</li><li>Return <emu-xref aoid="Completion" id="_ref_1"><a href="https://tc39.github.io/ecma262/#sec-completion-record-specification-type">Completion</a></emu-xref>{[[Type]]: <emu-const>throw</emu-const>, [[Value]]: <var>exprValue</var>, [[Target]]: <emu-const>empty</emu-const>}.
+    </li></ol></emu-alg>
+  </emu-clause>
+</emu-clause></emu-import>
+</emu-clause><emu-annex id="sec-copyright-and-software-license">
       <h1><span class="secnum">A</span>Copyright &amp; Software License</h1>
       
       <h2>Copyright Notice</h2>

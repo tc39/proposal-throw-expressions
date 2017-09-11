@@ -6,9 +6,13 @@ const spawn = require("child_process").spawn;
 
 gulp.task("clean", () => del("docs/**/*"));
 
-gulp.task("build", () => gulp
+gulp.task("build", ["copy"], () => gulp
     .src(["src/index.html"])
     .pipe(emu({ js: "ecmarkup.js", css: "ecmarkup.css", assets: "none" }))
+    .pipe(gulp.dest("docs")));
+
+gulp.task("copy", () => gulp
+    .src(["src/*.pptx"])
     .pipe(gulp.dest("docs")));
 
 gulp.task("watch", () => gulp
