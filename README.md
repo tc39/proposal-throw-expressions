@@ -128,7 +128,7 @@ The following is a high-level list of tasks to progress through each stage of th
 [Champion]: #status
 [Prose]: #proposal
 [Examples]: #proposal
-[Specification]: #todo
+[Specification]: https://rbuckton.github.io/proposal-throw-expressions
 [Transpiler]: #todo
 [Stage3ReviewerSignOff]: #todo
 [Stage3EditorSignOff]: #todo
