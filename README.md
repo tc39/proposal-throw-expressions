@@ -4,7 +4,7 @@ This proposal defines new syntax to throw exceptions from within an expression c
 
 ## Status
 
-**Stage:** 0  
+**Stage:** 1  
 **Champion:** Ron Buckton (@rbuckton)
 
 _For more information see the [TC39 proposal process](https://tc39.github.io/process-document/)._
