@@ -5,7 +5,7 @@
     ExpressionStatement[Yield, Await] :
       <del>[lookahead &lt;! {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`}] Expression[+In, ?Yield, ?Await] `;`</del>
       <ins>[lookahead &lt;! {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`, `throw`}] Expression[+In, ?Yield, ?Await] `;`</ins>
-    </emu-grammar>
+  </emu-grammar>
   <emu-note>
     <p>
       An |ExpressionStatement| cannot start with a U+007B (LEFT CURLY BRACKET) because that might make it ambiguous with a |Block|.
