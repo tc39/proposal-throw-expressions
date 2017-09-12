@@ -1,0 +1,18 @@
+<emu-clause id="sec-expression-statement">
+  <h1>Expression Statement</h1>
+  <h2>Syntax</h2>
+  <emu-grammar type="definition">
+    ExpressionStatement[Yield, Await] :
+      <del>[lookahead &lt;! {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`}] Expression[+In, ?Yield, ?Await] `;`</del>
+      <ins>[lookahead &lt;! {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`, `throw`}] Expression[+In, ?Yield, ?Await] `;`</ins>
+    </emu-grammar>
+  <emu-note>
+    <p>
+      An |ExpressionStatement| cannot start with a U+007B (LEFT CURLY BRACKET) because that might make it ambiguous with a |Block|.
+      An |ExpressionStatement| cannot start with the `function` or `class` keywords because that would make it ambiguous with a |FunctionDeclaration|, a |GeneratorDeclaration|, or a |ClassDeclaration|.
+      An |ExpressionStatement| cannot start with `async function` because that would make it ambiguous with an |AsyncFunctionDeclaration|.
+      An |ExpressionStatement| cannot start with the two token sequence `let [` because that would make it ambiguous with a `let` |LexicalDeclaration| whose first |LexicalBinding| was an |ArrayBindingPattern|.
+      <ins>An |ExpressionStatement| cannot start with `throw` because that would make it ambiguous with a `ThrowStatement`.</ins>
+    </p>
+  </emu-note>
+</emu-clause>
