@@ -4,7 +4,7 @@ This proposal defines new syntax to throw exceptions from within an expression c
 
 ## Status
 
-**Stage:** 1  
+**Stage:** 2  
 **Champion:** Ron Buckton (@rbuckton)
 
 _For more information see the [TC39 proposal process](https://tc39.github.io/process-document/)._
@@ -92,7 +92,7 @@ However, this has several downsides compared to a native implementation:
 
 # Resources
 
-- [Overview Slides](https://rbuckton.github.io/proposal-throw-expressions/ThrowExpressions-tc39.pptx)
+- [Overview Slides](https://tc39.github.io/proposal-throw-expressions/ThrowExpressions-tc39.pptx)
 
 # TODO
 
@@ -108,7 +108,7 @@ The following is a high-level list of tasks to progress through each stage of th
 ### Stage 2 Entrance Criteria
 
 * [x] [Initial specification text][Specification].  
-* [ ] _Optional_. [Transpiler support][Transpiler].  
+* [x] _Optional_. [Transpiler support][Transpiler].  
 
 ### Stage 3 Entrance Criteria
 
@@ -128,8 +128,8 @@ The following is a high-level list of tasks to progress through each stage of th
 [Champion]: #status
 [Prose]: #proposal
 [Examples]: #proposal
-[Specification]: https://rbuckton.github.io/proposal-throw-expressions
-[Transpiler]: #todo
+[Specification]: https://tc39.github.io/proposal-throw-expressions
+[Transpiler]: https://github.com/Microsoft/TypeScript/pull/18798
 [Stage3ReviewerSignOff]: #todo
 [Stage3EditorSignOff]: #todo
 [Test262PullRequest]: #todo
