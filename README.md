@@ -1,5 +1,7 @@
 # ECMAScript `throw` expressions
 
+![Stage 4](https://badges.aleen42.com/src/tc39_5.svg)
+
 This proposal defines new syntax to throw exceptions from within an expression context.
 
 ## Status
