@@ -49,14 +49,52 @@ A `throw` expression *does not* replace a `throw` statement due to the differenc
 in the precedence of their values. To maintain the precedence of the `throw` statement,
 we must add a lookahead restriction to `ExpressionStatement` to avoid ambiguity.
 
+Due to the difference in precedence between a `throw` expression and a _ThrowStatement_, certain operators to the right
+of the expression would parse differently between the two which could cause ambiguity and confusion:
+
+```js
+throw a ? b : c; // evaluates 'a' and throws either 'b' or 'c'
+(throw a ? b : c); // without restriction would throw 'a', so `?` is forbidden
+
+throw a, b; // evaluates 'a', throws 'b'
+(throw a, b); // would throw 'a', not 'b', so `,` is forbidden
+
+throw a && b; // throws 'a' if 'a' is falsy, otherwise throws 'b'
+(throw a && b); // would always throw 'a', so `&&` is forbidden
+
+throw a || b; // throws 'a' if 'a' is truthy, otherwise throws 'b'
+(throw a || b); // would always throw 'a', so `||` is forbidden
+
+// ... etc.
+```
+
+As a result, all binary operators and the `?` operator are forbidden to the right of a `throw` expression. To use these
+operators inside of a `throw` expression, the expression must be surrounded with parentheses:
+
+```js
+(throw (a, b)); // evaluates 'a', throws 'b'
+(throw (a ? b : c)); // evaluates 'a' and throws either 'b' or 'c'
+```
+
+However, we do not forbid `:` so that a `throw` expression can still be easily used in a ternary:
+
+```js
+const x = a ? throw b : c; // if 'a' then throw 'b', else evaluate 'c'
+```
+
 # Grammar
 
-```grammarkdown
-UnaryExpression[Yield, Await]:
-  `throw` UnaryExpression[?Yield, ?Await]
+```diff grammarkdown
+++ThrowExpressionInvalidPunctuator : one of
+  `,` `<` `>` `<=` `>=` `==` `!=` `===` `!==` `+` `-` `*` `/` `%` `**` `<<` `>>` `>>>` `&` `|` `^` `&&` `||` `??`
+  `=` `+=` `-=` `*=` `%=` `**=` `<<=` `>>=` `>>>=` `&=` `|=` `^=` `&&=` `||=` `??=` `?`
 
-ExpressionStatement[Yield, Await]:
-  [lookahead ∉ {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`, `throw`}] Expression[+In, ?Yield, ?Await] `;`
+  UnaryExpression[Yield, Await] :
+++  `throw` UnaryExpression[?Yield, ?Await] [lookahead ∉ ThrowExpressionInvalidPunctuator]
+
+  ExpressionStatement[Yield, Await] :
+--  [lookahead ∉ {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`}] Expression[+In, ?Yield, ?Await] `;`
+++  [lookahead ∉ {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`, `throw`}] Expression[+In, ?Yield, ?Await] `;`
 ```
 
 # Other Notes

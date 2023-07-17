@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rbuckton/proposal-throw-expressions.git"
+    "url": "git+https://github.com/tc39/proposal-throw-expressions.git"
   },
   "keywords": [
     "javascript",
@@ -18,14 +18,16 @@
   "author": "Ron Buckton (rbuckton@microsoft.com)",
   "license": "SEE LICENSE IN https://tc39.github.io/ecma262/#sec-copyright-and-software-license",
   "bugs": {
-    "url": "https://github.com/rbuckton/proposal-throw-expressions/issues"
+    "url": "https://github.com/tc39/proposal-throw-expressions/issues"
   },
-  "homepage": "https://github.com/rbuckton/proposal-throw-expressions#readme",
+  "homepage": "https://github.com/tc39/proposal-throw-expressions#readme",
   "devDependencies": {
-    "del": "^2.2.2",
-    "ecmarkup": "^3.11.2",
-    "gulp": "^3.9.1",
-    "gulp-emu": "^1.1.0",
-    "gulp-live-server": "0.0.30"
+    "@tc39/ecma262-biblio": "^2.0.2322",
+    "del": "^6.0.0",
+    "ecmarkup": "^12.1.0",
+    "gulp": "^4.0.2",
+    "gulp-emu": "^2.1.0",
+    "gulp-live-server": "0.0.31",
+    "gulp-rename": "^2.0.0"
   }
 }

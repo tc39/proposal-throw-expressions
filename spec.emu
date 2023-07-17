@@ -1,0 +1,113 @@
+<!doctype html>
+<meta charset="utf8">
+<link rel="stylesheet" href="ecmarkup.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="spec" href="es2017" />
+<script src="ecmarkup.js"></script>
+<pre class="metadata">
+title: ECMAScript 'throw' expressions
+stage: 2
+contributors: Ron Buckton, Ecma International
+</pre>
+
+<emu-intro id="sec-intro">
+  <h1>Introduction</h1>
+  <p>This proposal defines new syntax to throw exceptions from within an expression context.</p>
+  <p>See <a href="https://github.com/tc39/proposal-throw-expressions">the proposal repository</a> for background material and discussion.</p>
+</emu-intro>
+
+<emu-clause id="sec-ecmascript-language-expressions">
+  <h1>ECMAScript Language: Expressions</h1>
+  <emu-clause id="sec-unary-operators">
+    <h1>Unary Operators</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      UnaryExpression[Yield, Await] :
+        UpdateExpression[?Yield, ?Await]
+        `delete` UnaryExpression[?Yield, ?Await]
+        `void` UnaryExpression[?Yield, ?Await]
+        `typeof` UnaryExpression[?Yield, ?Await]
+        <ins>`throw` UnaryExpression[?Yield, ?Await]</ins>
+        `+` UnaryExpression[?Yield, ?Await]
+        `-` UnaryExpression[?Yield, ?Await]
+        `~` UnaryExpression[?Yield, ?Await]
+        `!` UnaryExpression[?Yield, ?Await]
+        [+Await] AwaitExpression[?Yield]
+    </emu-grammar>
+
+    <emu-clause id="sec-unary-operators-static-semantics-isfunctiondefinition">
+      <h1>Static Semantics: IsFunctionDefinition</h1>
+      <emu-see-also-para op="IsFunctionDefinition"></emu-see-also-para>
+      <emu-grammar>
+        UnaryExpression :
+          `delete` UnaryExpression
+          `void` UnaryExpression
+          `typeof` UnaryExpression
+          <ins>`throw` UnaryExpression</ins>
+          `+` UnaryExpression
+          `-` UnaryExpression
+          `~` UnaryExpression
+          `!` UnaryExpression
+          AwaitExpression
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>
+  </emu-clause>
+
+  <emu-clause id="sec-unary-operators-static-semantics-isvalidsimpleassignmenttarget">
+    <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
+    <emu-see-also-para op="IsValidSimpleAssignmentTarget"></emu-see-also-para>
+    <emu-grammar>
+      UnaryExpression :
+        `delete` UnaryExpression
+        `void` UnaryExpression
+        `typeof` UnaryExpression
+        <ins>`throw` UnaryExpression</ins>
+        `+` UnaryExpression
+        `-` UnaryExpression
+        `~` UnaryExpression
+        `!` UnaryExpression
+        AwaitExpression
+    </emu-grammar>
+    <emu-alg>
+      1. Return *false*.
+    </emu-alg>
+  </emu-clause>
+
+  <emu-clause id="sec-throw-operator">
+    <h1><ins>The `throw` Operator</ins></h1>
+    <emu-clause id="sec-throw-operator-runtime-semantics-evaluation">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>
+      <emu-alg>
+        1. Let _exprRef_ be the result of evaluating |UnaryExpression|.
+        1. Let _exprValue_ be ? GetValue(_exprRef_).
+        1. Return Completion{[[Type]]: ~throw~, [[Value]]: _exprValue_, [[Target]]: ~empty~}.
+      </emu-alg>
+    </emu-clause>
+  </emu-clause>
+</emu-clause>
+
+<emu-clause id="sec-ecmascript-language-statements-and-declarations">
+  <h1>ECMAScript Language: Statements and Declarations</h1>
+  <emu-clause id="sec-expression-statement">
+    <h1>Expression Statement</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      ExpressionStatement[Yield, Await] :
+        <del>[lookahead &lt;! {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`}] Expression[+In, ?Yield, ?Await] `;`</del>
+        <ins>[lookahead &lt;! {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`, `throw`}] Expression[+In, ?Yield, ?Await] `;`</ins>
+    </emu-grammar>
+    <emu-note>
+      <p>
+        An |ExpressionStatement| cannot start with a U+007B (LEFT CURLY BRACKET) because that might make it ambiguous with a |Block|.
+        An |ExpressionStatement| cannot start with the `function` or `class` keywords because that would make it ambiguous with a |FunctionDeclaration|, a |GeneratorDeclaration|, or a |ClassDeclaration|.
+        An |ExpressionStatement| cannot start with `async function` because that would make it ambiguous with an |AsyncFunctionDeclaration|.
+        An |ExpressionStatement| cannot start with the two token sequence `let [` because that would make it ambiguous with a `let` |LexicalDeclaration| whose first |LexicalBinding| was an |ArrayBindingPattern|.
+        <ins>An |ExpressionStatement| cannot start with `throw` because that would make it ambiguous with a `ThrowStatement`.</ins>
+      </p>
+    </emu-note>
+  </emu-clause>
+</emu-clause>
