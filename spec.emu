@@ -329,6 +329,7 @@ contributors: Ron Buckton, Ecma International
       </emu-alg>
     </emu-clause>
 
+    <ins class="block">
     <emu-clause id="sec-static-semantics-containsthrow" type="sdo">
       <h1>Static Semantics: ContainsThrowOnRight ( ): a Boolean</h1>
       <dl class="header">
@@ -521,6 +522,7 @@ contributors: Ron Buckton, Ecma International
         1. Return *false*.
       </emu-alg>
     </emu-clause>
+    </ins>
   </emu-clause>
 </emu-clause>
 
@@ -564,6 +566,7 @@ contributors: Ron Buckton, Ecma International
 
   <emu-clause id="sec-multiplicative-operators">
     <h1>Multiplicative Operators</h1>
+    <ins class="block">
     <emu-clause id="sec-assignment-operators-static-semantics">
       <h1>Static Semantics</h1>
       <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
@@ -592,10 +595,12 @@ contributors: Ron Buckton, Ecma International
         </emu-note>
       </emu-clause>
     </emu-clause>
+    </ins>
   </emu-clause>
 
   <emu-clause id="sec-additive-operators">
     <h1>Additive Operators</h1>
+    <ins class="block">
     <emu-clause id="sec-assignment-operators-static-semantics">
       <h1>Static Semantics</h1>
       <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
@@ -625,10 +630,12 @@ contributors: Ron Buckton, Ecma International
         </emu-note>
       </emu-clause>
     </emu-clause>
+    </ins>
   </emu-clause>
 
   <emu-clause id="sec-assignment-operators">
     <h1>Assignment Operators</h1>
+    <ins class="block">
     <emu-clause id="sec-assignment-operators-static-semantics">
       <h1>Static Semantics</h1>
       <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
@@ -657,6 +664,7 @@ contributors: Ron Buckton, Ecma International
         </emu-note>
       </emu-clause>
     </emu-clause>
+    </ins>
   </emu-clause>
 </emu-clause>
 
