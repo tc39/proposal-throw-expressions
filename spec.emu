@@ -544,7 +544,7 @@ contributors: Ron Buckton, Ecma International
         [+Await] AwaitExpression[?Yield]
 
       <ins class="block">
-        ThrowExpressionInvalidPunctuator : one of `,` `&lt;` `>` `&lt;=` `>=` `==` `!=` `===` `!==` `*` `%` `**` `&lt;&lt;` `>>` `>>>` `&` `|` `^` `&&` `||` `??` `=` `+=` `-=` `*=` `%=` `**=` `&lt;&lt;=` `>>=` `>>>=` `&=` `|=` `^=` `&&=` `||=` `??=` `?`
+        ThrowExpressionInvalidPunctuator : one of `,` `&lt;` `>` `&lt;=` `>=` `==` `!=` `===` `!==` `*` `%` `**` `&lt;&lt;` `>>` `>>>` `&` `|` `^` `&&` `||` `??` `?`
       </ins>
     </emu-grammar>
 
