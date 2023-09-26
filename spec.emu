@@ -351,22 +351,124 @@ contributors: Ron Buckton, Ecma International
         [+Await] AwaitExpression[?Yield]
 
       <ins class="block">
-        ThrowExpressionInvalidPunctuator : one of `,` `&lt;` `>` `&lt;=` `>=` `==` `!=` `===` `!==` `+` `-` `*` `/` `%` `**` `&lt;&lt;` `>>` `>>>` `&` `|` `^` `&&` `||` `??` `=` `+=` `-=` `*=` `/=` `%=` `**=` `&lt;&lt;=` `>>=` `>>>=` `&=` `|=` `^=` `&&=` `||=` `??=` `?`
+        ThrowExpressionInvalidPunctuator : one of `,` `&lt;` `>` `&lt;=` `>=` `==` `!=` `===` `!==` `*` `%` `**` `&lt;&lt;` `>>` `>>>` `&` `|` `^` `&&` `||` `??` `=` `+=` `-=` `*=` `%=` `**=` `&lt;&lt;=` `>>=` `>>>=` `&=` `|=` `^=` `&&=` `||=` `??=` `?`
       </ins>
     </emu-grammar>
+
+    <emu-clause id="sec-throw-operator">
+      <h1><ins>The `throw` Operator</ins></h1>
+      <emu-clause id="sec-throw-operator-runtime-semantics-evaluation">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>
+        <emu-alg>
+          1. Let _exprRef_ be ? Evaluation of |UnaryExpression|.
+          1. Let _exprValue_ be ? GetValue(_exprRef_).
+          1. Return ThrowCompletion(_exprValue_).
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
   </emu-clause>
 
-  <emu-clause id="sec-throw-operator">
-    <h1><ins>The `throw` Operator</ins></h1>
-    <emu-clause id="sec-throw-operator-runtime-semantics-evaluation">
-      <h1>Runtime Semantics: Evaluation</h1>
-      <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>
-      <emu-alg>
-        1. Let _exprRef_ be ? Evaluation of |UnaryExpression|.
-        1. Let _exprValue_ be ? GetValue(_exprRef_).
-        1. Return ThrowCompletion(_exprValue_).
-      </emu-alg>
+
+  <emu-clause id="sec-multiplicative-operators">
+    <h1>Multiplicative Operators</h1>
+    <emu-clause id="sec-assignment-operators-static-semantics">
+      <h1>Static Semantics</h1>
+      <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
+        <h1>Static Semantics: Early Errors</h1>
+        <emu-grammar>
+          MultiplicativeExpression :
+            MultiplicativeExpression MultiplicativeOperator ExponentiationExpression
+        </emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the derived |MultiplicativeExpression| is <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar> and the source text matched by |MultiplicativeOperator| is `/`.
+          </li>
+        </ul>
+        <emu-note>
+          <p>This production exists in order to prevent automatic semicolon insertion rules (<emu-xref href="#sec-automatic-semicolon-insertion"></emu-xref>) from being applied to the following code:</p>
+          <pre><code class="javascript">
+            a ?? throw b
+            /c/d
+          </code></pre>
+          <p>so that it would be interpreted as two valid statements. The purpose is to maintain consistency with similar code using |ThrowStatement|:</p>
+          <pre><code class="javascript">
+            throw b
+            /c/d
+          </code></pre>
+          <p>which is a valid statement and where automatic semicolon insertion does not apply.</p>
+        </emu-note>
+      </emu-clause>
     </emu-clause>
+  </emu-clause>
+
+  <emu-clause id="sec-additive-operators">
+    <h1>Additive Operators</h1>
+    <emu-clause id="sec-assignment-operators-static-semantics">
+      <h1>Static Semantics</h1>
+      <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
+        <h1>Static Semantics: Early Errors</h1>
+        <emu-grammar>
+          AdditiveExpression :
+            AdditiveExpression `+` MultiplicativeExpression
+            AdditiveExpression `-` MultiplicativeExpression
+        </emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the derived |AdditiveExpression| is <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>.
+          </li>
+        </ul>
+        <emu-note>
+          <p>This production exists in order to prevent automatic semicolon insertion rules (<emu-xref href="#sec-automatic-semicolon-insertion"></emu-xref>) from being applied to the following code:</p>
+          <pre><code class="javascript">
+            a ?? throw b
+            + c
+          </code></pre>
+          <p>so that it would be interpreted as two valid statements. The purpose is to maintain consistency with similar code using |ThrowStatement|:</p>
+          <pre><code class="javascript">
+            throw b
+            + c
+          </code></pre>
+          <p>which is a valid statement and where automatic semicolon insertion does not apply.</p>
+        </emu-note>
+      </emu-clause>
+    </emu-clause>
+  </emu-clause>
+
+  <emu-clause id="sec-assignment-operators">
+    <h1>Assignment Operators</h1>
+    <emu-clause id="sec-assignment-operators-static-semantics">
+      <h1>Static Semantics</h1>
+      <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
+        <h1>Static Semantics: Early Errors</h1>
+        <emu-grammar>
+          AssignmentExpression :
+            LeftHandSideExpression `/=` AssignmentExpression
+        </emu-grammar>
+        <ul>
+          <li>
+            It is a Syntax Error if the derived |LeftHandSideExpression| is <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>.
+          </li>
+        </ul>
+        <emu-note>
+          <p>This production exists in order to prevent automatic semicolon insertion rules (<emu-xref href="#sec-automatic-semicolon-insertion"></emu-xref>) from being applied to the following code:</p>
+          <pre><code class="javascript">
+            a ?? throw b
+            /= c / d
+          </code></pre>
+          <p>so that it would be interpreted as two valid statements. The purpose is to maintain consistency with similar code using |ThrowStatement|:</p>
+          <pre><code class="javascript">
+            throw b
+            /= c / d
+          </code></pre>
+          <p>which is a valid statement and where automatic semicolon insertion does not apply.</p>
+        </emu-note>
+      </emu-clause>
+    </emu-clause>
+
+  </emu-clause>
+
+
   </emu-clause>
 </emu-clause>
 
