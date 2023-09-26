@@ -328,6 +328,199 @@ contributors: Ron Buckton, Ecma International
         1. Return ~invalid~.
       </emu-alg>
     </emu-clause>
+
+    <emu-clause id="sec-static-semantics-containsthrow" type="sdo">
+      <h1>Static Semantics: ContainsThrowOnRight ( ): a Boolean</h1>
+      <dl class="header">
+      </dl>
+      <emu-grammar>
+        UpdateExpression :
+          LeftHandSideExpression
+          LeftHandSideExpression `++`
+          LeftHandSideExpression `--`
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        UpdateExpression :
+          `++` UnaryExpression
+          `--` UnaryExpression
+      </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |UnaryExpression| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>AwaitExpression : `await` UnaryExpression</emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |UnaryExpression| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        UnaryExpression :
+          `delete` UnaryExpression
+          `void` UnaryExpression
+          `typeof` UnaryExpression
+          `+` UnaryExpression
+          `-` UnaryExpression
+          `~` UnaryExpression
+          `!` UnaryExpression
+      </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |UnaryExpression| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
+      <emu-grammar>ExponentiationExpression : UpdateExpression `**` ExponentiationExpression</emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |ExponentationExpression| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        AdditiveExpression :
+          AdditiveExpression `+` MultiplicativeExpression
+          AdditiveExpression `-` MultiplicativeExpression
+      </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |MultiplicativeExpression| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        ShiftExpression :
+          ShiftExpression `&lt;&lt;` AdditiveExpression
+          ShiftExpression `&gt;&gt;` AdditiveExpression
+          ShiftExpression `&gt;&gt;&gt;` AdditiveExpression
+      </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |AdditiveExpression| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        RelationalExpression :
+          RelationalExpression `&lt;` ShiftExpression
+          RelationalExpression `&gt;` ShiftExpression
+          RelationalExpression `&lt;=` ShiftExpression
+          RelationalExpression `&gt;=` ShiftExpression
+          RelationalExpression `instanceof` ShiftExpression
+          RelationalExpression `in` ShiftExpression
+          PrivateIdentifier `in` ShiftExpression
+      </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |ShiftExpression| is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        EqualityExpression :
+          EqualityExpression `==` RelationalExpression
+          EqualityExpression `!=` RelationalExpression
+          EqualityExpression `===` RelationalExpression
+          EqualityExpression `!==` RelationalExpression
+      </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |RelationalExpression| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>BitwiseANDExpression : BitwiseANDExpression `&amp;` EqualityExpression </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |EqualityExpression| is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>BitwiseXORExpression : BitwiseXORExpression `^` BitwiseANDExpression </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |BitwiseANDExpression| is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>BitwiseORExpression : BitwiseORExpression `^` BitwiseXORExpression </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |BitwiseXORExpression| is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>LogicalANDExpression : LogicalANDExpression `&amp;&amp;` BitwiseORExpression </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |BitwiseORExpression| is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>LogicalORExpression : LogicalORExpression `||` LogicalANDExpression </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |LogicalANDExpression| is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>CoalesceExpression : CoalesceExpressionHead `??` BitwiseORExpression </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |BitwiseORExpression| is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>ConditionalExpression : ShortCircuitExpression `?` AssignmentExpression `:` AssignmentExpression </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |AssignmentExpression| is *true*, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        AssignmentExpression :
+          LeftHandSideExpression `=` AssignmentExpression
+          LeftHandSideExpression AssignmentOperator AssignmentExpression
+          LeftHandSideExpression `&amp;&amp;=` AssignmentExpression
+          LeftHandSideExpression `||=` AssignmentExpression
+          LeftHandSideExpression `??=` AssignmentExpression
+      </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |AssignmentExpression| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        YieldExpression :
+          `yield` AssignmentExpression
+          `yield` `*` AssignmentExpression
+      </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |AssignmentExpression| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>YieldExpression : `yield`</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>ArrowFunction : ArrowParameters `=>` ConciseBody</emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |ConciseBody| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>ConciseBody : ExpressionBody</emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |ExpressionBody| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>ConciseBody : `{` FunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        AsyncArrowFunction :
+          `async` AsyncArrowBindingIdentifier `=>` AsyncConciseBody
+          CoverCallExpressionAndAsyncArrowHead `=>` AsyncConciseBody
+      </emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |AsyncConciseBody| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>AsyncConciseBody : ExpressionBody</emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |ExpressionBody| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>AsyncConciseBody : `{` AsyncFunctionBody `}`</emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>Expression : Expression `,` AssignmentExpression</emu-grammar>
+      <emu-alg>
+        1. If ContainsThrowOnRight of |AssignmentExpression| is *true*, return *true*
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>
   </emu-clause>
 </emu-clause>
 
@@ -369,7 +562,6 @@ contributors: Ron Buckton, Ecma International
     </emu-clause>
   </emu-clause>
 
-
   <emu-clause id="sec-multiplicative-operators">
     <h1>Multiplicative Operators</h1>
     <emu-clause id="sec-assignment-operators-static-semantics">
@@ -382,7 +574,7 @@ contributors: Ron Buckton, Ecma International
         </emu-grammar>
         <ul>
           <li>
-            It is a Syntax Error if the derived |MultiplicativeExpression| is <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar> and the source text matched by |MultiplicativeOperator| is `/`.
+            It is a Syntax Error if ContainsThrowOnRight of |MultiplicativeExpression| is *true*.
           </li>
         </ul>
         <emu-note>
@@ -415,7 +607,7 @@ contributors: Ron Buckton, Ecma International
         </emu-grammar>
         <ul>
           <li>
-            It is a Syntax Error if the derived |AdditiveExpression| is <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>.
+            It is a Syntax Error if ContainsThrowOnRight of |AdditiveExpression| is *true*.
           </li>
         </ul>
         <emu-note>
@@ -447,7 +639,7 @@ contributors: Ron Buckton, Ecma International
         </emu-grammar>
         <ul>
           <li>
-            It is a Syntax Error if the derived |LeftHandSideExpression| is <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>.
+            It is a Syntax Error if ContainsThrowOnRight of |LeftHandSideExpression| is *true*.
           </li>
         </ul>
         <emu-note>
@@ -465,10 +657,6 @@ contributors: Ron Buckton, Ecma International
         </emu-note>
       </emu-clause>
     </emu-clause>
-
-  </emu-clause>
-
-
   </emu-clause>
 </emu-clause>
 
