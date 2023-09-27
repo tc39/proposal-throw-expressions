@@ -1258,8 +1258,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-let sdoMap = JSON.parse(`{"prod-n3f1x4OA":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-0dgjtiQ7"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-JRAAw485"]},"ContainsThrowOnRight":{"clause":"1.2.2","ids":["prod-OMK4f8YM"]}},"prod-bEnaiUfM":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-9gYsYykc"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-L28J0B-W"]},"ContainsThrowOnRight":{"clause":"1.2.2","ids":["prod-Q3lx-ZaJ"]}},"prod-oOmRMvU8":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-ol3I6Y7A"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-_pp9tysE"]},"ContainsThrowOnRight":{"clause":"1.2.2","ids":["prod-0LQdXAPi"]}},"prod-55Xz_E0Z":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-Csq5hMXB"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-vWffOcNW"]},"ContainsThrowOnRight":{"clause":"1.2.2","ids":["prod-ovuR0snB"]}},"prod-yxAmCDj1":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod--Zmi0P07"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-mkCLwyla"]},"ContainsThrowOnRight":{"clause":"1.2.2","ids":["prod-QzbIEInE"]}},"prod-nw8eIftf":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-QujNq09F"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-vQJ1qlPd"]},"ContainsThrowOnRight":{"clause":"1.2.2","ids":["prod-b-cKKFjG"]}},"prod-4lEraLTO":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-BcCJ4AWM"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-2t1vDiwJ"]},"ContainsThrowOnRight":{"clause":"1.2.2","ids":["prod-KlHIwVVa"]}},"prod-zVi0tVGF":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-RqMdwBuU"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-BbB1pUoP"]}},"prod-5cVHRKTO":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-TmYmJZeN"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-rCOCmDQm"]}},"prod-wU5Xsk6s":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-D9D2dUnP"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-d_vrZ4E2"]}},"prod-eXKFjh2J":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-F_LSmUck"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod--dpqOTdc"]}},"prod-shfKC2mw":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-t02tAu6_"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-DZjLGTZE"]}},"prod-hQLdzapj":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-jgF9l9Ty"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-7LWIIJBX"]}},"prod-w-48XpMo":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-U8uU_bab"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-Bj3Q77v8"]}},"prod-7NM9KEaO":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-ooZHsevq"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-Lo8Q8Acu"]}},"prod-nUwhqikN":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-dPINdG0A"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-MsqqUtwK"]}},"prod-iYk5nCgu":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-8REG7QdK"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-OM0GWtO8"]}},"prod-ymHEaUid":{"ContainsThrowOnRight":{"clause":"1.2.2","ids":["prod-04w7TEZA"]}}}`);
-let biblio = JSON.parse(`{"refsByClause":{"sec-static-semantics-isfunctiondefinition":["_ref_0","_ref_7","_ref_8","_ref_9","_ref_10","_ref_11","_ref_12","_ref_13","_ref_14","_ref_15","_ref_16","_ref_17","_ref_18","_ref_19","_ref_20","_ref_21","_ref_22","_ref_23","_ref_24","_ref_25"],"sec-static-semantics-assignmenttargettype":["_ref_1","_ref_26","_ref_27","_ref_28","_ref_29","_ref_30","_ref_31","_ref_32","_ref_33","_ref_34","_ref_35","_ref_36","_ref_37","_ref_38","_ref_39","_ref_40","_ref_41","_ref_42","_ref_43","_ref_44"],"sec-static-semantics-containsthrow":["_ref_2","_ref_3","_ref_4","_ref_45","_ref_46","_ref_47","_ref_48","_ref_49","_ref_50","_ref_51","_ref_52","_ref_53","_ref_54","_ref_55","_ref_56"],"sec-multiplicative-operators-static-semantics-early-errors":["_ref_5"],"sec-additive-operators-static-semantics-early-errors":["_ref_6"],"sec-unary-operators":["_ref_57","_ref_58","_ref_59","_ref_60","_ref_61","_ref_62","_ref_63","_ref_64"],"sec-throw-operator":["_ref_65","_ref_66"],"sec-throw-operator-runtime-semantics-evaluation":["_ref_67","_ref_68"],"sec-assignment-operators":["_ref_69","_ref_70","_ref_71","_ref_72","_ref_73","_ref_74","_ref_75","_ref_76"],"sec-assignment-operators-static-semantics-early-errors":["_ref_77","_ref_78"],"sec-expression-statement":["_ref_79","_ref_80","_ref_81","_ref_82","_ref_83"]},"entries":[{"type":"clause","id":"sec-intro","titleHTML":"Introduction","number":""},{"type":"op","aoid":"IsFunctionDefinition","refId":"sec-static-semantics-isfunctiondefinition"},{"type":"clause","id":"sec-static-semantics-isfunctiondefinition","titleHTML":"Static Semantics: IsFunctionDefinition","number":"1.1.1","referencingIds":["_ref_0"]},{"type":"clause","id":"sec-syntax-directed-operations-function-name-inference","titleHTML":"Function Name Inference","number":"1.1"},{"type":"op","aoid":"AssignmentTargetType","refId":"sec-static-semantics-assignmenttargettype"},{"type":"clause","id":"sec-static-semantics-assignmenttargettype","titleHTML":"Static Semantics: AssignmentTargetType","number":"1.2.1","referencingIds":["_ref_1"]},{"type":"op","aoid":"ContainsThrowOnRight","refId":"sec-static-semantics-containsthrow"},{"type":"clause","id":"sec-static-semantics-containsthrow","titleHTML":"Static Semantics: ContainsThrowOnRight","number":"1.2.2","referencingIds":["_ref_2","_ref_3","_ref_4","_ref_5","_ref_6"]},{"type":"clause","id":"sec-syntax-directed-operations-miscellaneous","titleHTML":"Miscellaneous","number":"1.2"},{"type":"clause","id":"sec-syntax-directed-operations","titleHTML":"Syntax-Directed Operations","number":"1"},{"type":"production","id":"prod-UnaryExpression","name":"UnaryExpression","referencingIds":["_ref_7","_ref_8","_ref_9","_ref_10","_ref_11","_ref_12","_ref_13","_ref_14","_ref_15","_ref_26","_ref_27","_ref_28","_ref_29","_ref_30","_ref_31","_ref_32","_ref_33","_ref_34","_ref_45","_ref_46","_ref_47","_ref_48","_ref_49","_ref_50","_ref_51","_ref_52","_ref_53","_ref_54","_ref_55","_ref_56","_ref_57","_ref_58","_ref_59","_ref_60","_ref_61","_ref_62","_ref_63","_ref_65","_ref_67","_ref_68"]},{"type":"production","id":"prod-ThrowExpression","name":"ThrowExpression","referencingIds":["_ref_16","_ref_35","_ref_64","_ref_75","_ref_77"]},{"type":"production","id":"prod-ThrowExpressionInvalidPunctuator","name":"ThrowExpressionInvalidPunctuator","referencingIds":["_ref_66"]},{"type":"clause","id":"sec-throw-operator-runtime-semantics-evaluation","titleHTML":"Runtime Semantics: Evaluation","number":"2.1.1.1"},{"type":"clause","id":"sec-throw-operator","title":"The throw Operator","titleHTML":"<ins>The <code>throw</code> Operator</ins>","number":"2.1.1"},{"type":"clause","id":"sec-unary-operators","titleHTML":"Unary Operators","number":"2.1"},{"type":"clause","id":"sec-multiplicative-operators-static-semantics-early-errors","titleHTML":"Static Semantics: Early Errors","number":"2.2.1.1"},{"type":"clause","id":"sec-multiplicative-operators-static-semantics","titleHTML":"Static Semantics","number":"2.2.1"},{"type":"clause","id":"sec-multiplicative-operators","titleHTML":"Multiplicative Operators","number":"2.2"},{"type":"clause","id":"sec-additive-operators-static-semantics-early-errors","titleHTML":"Static Semantics: Early Errors","number":"2.3.1.1"},{"type":"clause","id":"sec-additive-operators-static-semantics","titleHTML":"Static Semantics","number":"2.3.1"},{"type":"clause","id":"sec-additive-operators","titleHTML":"Additive Operators","number":"2.3"},{"type":"production","id":"prod-AssignmentExpression","name":"AssignmentExpression","referencingIds":["_ref_17","_ref_18","_ref_19","_ref_21","_ref_22","_ref_23","_ref_24","_ref_25","_ref_36","_ref_37","_ref_38","_ref_40","_ref_41","_ref_42","_ref_43","_ref_44","_ref_69","_ref_71","_ref_72","_ref_73","_ref_74","_ref_76","_ref_78"]},{"type":"production","id":"prod-AssignmentOperator","name":"AssignmentOperator","referencingIds":["_ref_20","_ref_39","_ref_70"]},{"type":"clause","id":"sec-assignment-operators-static-semantics-early-errors","titleHTML":"Static Semantics: Early Errors","number":"2.4.1.1"},{"type":"clause","id":"sec-assignment-operators-static-semantics","titleHTML":"Static Semantics","number":"2.4.1"},{"type":"clause","id":"sec-assignment-operators","titleHTML":"Assignment Operators","number":"2.4"},{"type":"clause","id":"sec-ecmascript-language-expressions","titleHTML":"ECMAScript Language: Expressions","number":"2"},{"type":"production","id":"prod-ExpressionStatement","name":"ExpressionStatement","referencingIds":["_ref_79","_ref_80","_ref_81","_ref_82","_ref_83"]},{"type":"clause","id":"sec-expression-statement","titleHTML":"Expression Statement","number":"3.1"},{"type":"clause","id":"sec-ecmascript-language-statements-and-declarations","titleHTML":"ECMAScript Language: Statements and Declarations","number":"3"},{"type":"clause","id":"sec-copyright-and-software-license","title":"Copyright & Software License","titleHTML":"Copyright &amp; Software License","number":"A"}]}`);
+let sdoMap = JSON.parse(`{"prod-n3f1x4OA":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-0dgjtiQ7"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-JRAAw485"]}},"prod-bEnaiUfM":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-9gYsYykc"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-L28J0B-W"]}},"prod-oOmRMvU8":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-ol3I6Y7A"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-_pp9tysE"]}},"prod-55Xz_E0Z":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-Csq5hMXB"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-vWffOcNW"]}},"prod-yxAmCDj1":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod--Zmi0P07"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-mkCLwyla"]}},"prod-nw8eIftf":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-QujNq09F"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-vQJ1qlPd"]}},"prod-4lEraLTO":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-BcCJ4AWM"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-2t1vDiwJ"]}},"prod-zVi0tVGF":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-RqMdwBuU"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-BbB1pUoP"]}},"prod-5cVHRKTO":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-TmYmJZeN"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-rCOCmDQm"]}},"prod-wU5Xsk6s":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-D9D2dUnP"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-d_vrZ4E2"]}},"prod-eXKFjh2J":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-F_LSmUck"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod--dpqOTdc"]}},"prod-shfKC2mw":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-t02tAu6_"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-DZjLGTZE"]}},"prod-hQLdzapj":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-jgF9l9Ty"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-7LWIIJBX"]}},"prod-w-48XpMo":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-U8uU_bab"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-Bj3Q77v8"]}},"prod-7NM9KEaO":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-ooZHsevq"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-Lo8Q8Acu"]}},"prod-nUwhqikN":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-dPINdG0A"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-MsqqUtwK"]}},"prod-iYk5nCgu":{"IsFunctionDefinition":{"clause":"1.1.1","ids":["prod-8REG7QdK"]},"AssignmentTargetType":{"clause":"1.2.1","ids":["prod-OM0GWtO8"]}},"prod-ymHEaUid":{"ContainsThrowOnRight":{"clause":"1.2.2","ids":["prod-04w7TEZA"]}}}`);
+let biblio = JSON.parse(`{"refsByClause":{"sec-static-semantics-isfunctiondefinition":["_ref_0","_ref_6","_ref_7","_ref_8","_ref_9","_ref_10","_ref_11","_ref_12","_ref_13","_ref_14","_ref_15","_ref_16","_ref_17","_ref_18","_ref_19","_ref_20","_ref_21","_ref_22","_ref_23","_ref_24"],"sec-static-semantics-assignmenttargettype":["_ref_1","_ref_25","_ref_26","_ref_27","_ref_28","_ref_29","_ref_30","_ref_31","_ref_32","_ref_33","_ref_34","_ref_35","_ref_36","_ref_37","_ref_38","_ref_39","_ref_40","_ref_41","_ref_42","_ref_43"],"sec-static-semantics-containsthrow":["_ref_2","_ref_3","_ref_44"],"sec-multiplicative-operators-static-semantics-early-errors":["_ref_4"],"sec-additive-operators-static-semantics-early-errors":["_ref_5"],"sec-unary-operators":["_ref_45","_ref_46","_ref_47","_ref_48","_ref_49","_ref_50","_ref_51","_ref_52"],"sec-throw-operator":["_ref_53","_ref_54"],"sec-throw-operator-runtime-semantics-evaluation":["_ref_55","_ref_56"],"sec-assignment-operators":["_ref_57","_ref_58","_ref_59","_ref_60","_ref_61","_ref_62","_ref_63","_ref_64"],"sec-assignment-operators-static-semantics-early-errors":["_ref_65","_ref_66"],"sec-expression-statement":["_ref_67","_ref_68","_ref_69","_ref_70","_ref_71"]},"entries":[{"type":"clause","id":"sec-intro","titleHTML":"Introduction","number":""},{"type":"op","aoid":"IsFunctionDefinition","refId":"sec-static-semantics-isfunctiondefinition"},{"type":"clause","id":"sec-static-semantics-isfunctiondefinition","titleHTML":"Static Semantics: IsFunctionDefinition","number":"1.1.1","referencingIds":["_ref_0"]},{"type":"clause","id":"sec-syntax-directed-operations-function-name-inference","titleHTML":"Function Name Inference","number":"1.1"},{"type":"op","aoid":"AssignmentTargetType","refId":"sec-static-semantics-assignmenttargettype"},{"type":"clause","id":"sec-static-semantics-assignmenttargettype","titleHTML":"Static Semantics: AssignmentTargetType","number":"1.2.1","referencingIds":["_ref_1"]},{"type":"op","aoid":"ContainsThrowOnRight","refId":"sec-static-semantics-containsthrow"},{"type":"clause","id":"sec-static-semantics-containsthrow","titleHTML":"Static Semantics: ContainsThrowOnRight","number":"1.2.2","referencingIds":["_ref_2","_ref_3","_ref_4","_ref_5"]},{"type":"clause","id":"sec-syntax-directed-operations-miscellaneous","titleHTML":"Miscellaneous","number":"1.2"},{"type":"clause","id":"sec-syntax-directed-operations","titleHTML":"Syntax-Directed Operations","number":"1"},{"type":"production","id":"prod-UnaryExpression","name":"UnaryExpression","referencingIds":["_ref_6","_ref_7","_ref_8","_ref_9","_ref_10","_ref_11","_ref_12","_ref_13","_ref_14","_ref_25","_ref_26","_ref_27","_ref_28","_ref_29","_ref_30","_ref_31","_ref_32","_ref_33","_ref_44","_ref_45","_ref_46","_ref_47","_ref_48","_ref_49","_ref_50","_ref_51","_ref_53","_ref_55","_ref_56"]},{"type":"production","id":"prod-ThrowExpression","name":"ThrowExpression","referencingIds":["_ref_15","_ref_34","_ref_52","_ref_63","_ref_65"]},{"type":"production","id":"prod-ThrowExpressionInvalidPunctuator","name":"ThrowExpressionInvalidPunctuator","referencingIds":["_ref_54"]},{"type":"clause","id":"sec-throw-operator-runtime-semantics-evaluation","titleHTML":"Runtime Semantics: Evaluation","number":"2.1.1.1"},{"type":"clause","id":"sec-throw-operator","title":"The throw Operator","titleHTML":"<ins>The <code>throw</code> Operator</ins>","number":"2.1.1"},{"type":"clause","id":"sec-unary-operators","titleHTML":"Unary Operators","number":"2.1"},{"type":"clause","id":"sec-multiplicative-operators-static-semantics-early-errors","titleHTML":"Static Semantics: Early Errors","number":"2.2.1.1"},{"type":"clause","id":"sec-multiplicative-operators-static-semantics","titleHTML":"Static Semantics","number":"2.2.1"},{"type":"clause","id":"sec-multiplicative-operators","titleHTML":"Multiplicative Operators","number":"2.2"},{"type":"clause","id":"sec-additive-operators-static-semantics-early-errors","titleHTML":"Static Semantics: Early Errors","number":"2.3.1.1"},{"type":"clause","id":"sec-additive-operators-static-semantics","titleHTML":"Static Semantics","number":"2.3.1"},{"type":"clause","id":"sec-additive-operators","titleHTML":"Additive Operators","number":"2.3"},{"type":"production","id":"prod-AssignmentExpression","name":"AssignmentExpression","referencingIds":["_ref_16","_ref_17","_ref_18","_ref_20","_ref_21","_ref_22","_ref_23","_ref_24","_ref_35","_ref_36","_ref_37","_ref_39","_ref_40","_ref_41","_ref_42","_ref_43","_ref_57","_ref_59","_ref_60","_ref_61","_ref_62","_ref_64","_ref_66"]},{"type":"production","id":"prod-AssignmentOperator","name":"AssignmentOperator","referencingIds":["_ref_19","_ref_38","_ref_58"]},{"type":"clause","id":"sec-assignment-operators-static-semantics-early-errors","titleHTML":"Static Semantics: Early Errors","number":"2.4.1.1"},{"type":"clause","id":"sec-assignment-operators-static-semantics","titleHTML":"Static Semantics","number":"2.4.1"},{"type":"clause","id":"sec-assignment-operators","titleHTML":"Assignment Operators","number":"2.4"},{"type":"clause","id":"sec-ecmascript-language-expressions","titleHTML":"ECMAScript Language: Expressions","number":"2"},{"type":"production","id":"prod-ExpressionStatement","name":"ExpressionStatement","referencingIds":["_ref_67","_ref_68","_ref_69","_ref_70","_ref_71"]},{"type":"clause","id":"sec-expression-statement","titleHTML":"Expression Statement","number":"3.1"},{"type":"clause","id":"sec-ecmascript-language-statements-and-declarations","titleHTML":"ECMAScript Language: Statements and Declarations","number":"3"},{"type":"clause","id":"sec-copyright-and-software-license","title":"Copyright & Software License","titleHTML":"Copyright &amp; Software License","number":"A"}]}`);
 ;let usesMultipage = false</script><style>body {
   display: flex;
   font-size: 18px;
@@ -2629,47 +2629,47 @@ li.menu-search-result-term:before {
     </emu-rhs>
     <emu-rhs a="vwgxygda">
         <emu-t>++</emu-t>
-        <emu-nt id="_ref_7"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_6"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="onrvwudi">
         <emu-t>--</emu-t>
-        <emu-nt id="_ref_8"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_7"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 <emu-production name="UnaryExpression">
     <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="v9wiw5nl" id="prod-0dgjtiQ7">
         <emu-t>delete</emu-t>
-        <emu-nt id="_ref_9"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_8"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="5dgdjy7z" id="prod-9gYsYykc">
         <emu-t>void</emu-t>
-        <emu-nt id="_ref_10"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_9"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="qxosuesc" id="prod-ol3I6Y7A">
         <emu-t>typeof</emu-t>
-        <emu-nt id="_ref_11"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_10"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="o0kdmush" id="prod-Csq5hMXB">
         <emu-t>+</emu-t>
-        <emu-nt id="_ref_12"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_11"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="odzkxnu5" id="prod--Zmi0P07">
         <emu-t>-</emu-t>
-        <emu-nt id="_ref_13"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_12"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="b9nqec7b" id="prod-QujNq09F">
         <emu-t>~</emu-t>
-        <emu-nt id="_ref_14"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_13"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="ulcvcjyx" id="prod-BcCJ4AWM">
         <emu-t>!</emu-t>
-        <emu-nt id="_ref_15"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_14"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="shlomml6" id="prod-RqMdwBuU">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-AwaitExpression">AwaitExpression</a></emu-nt>
     </emu-rhs>
     <ins><emu-rhs a="z27rheny" id="prod-TmYmJZeN">
-        <emu-nt id="_ref_16"><a href="#prod-ThrowExpression">ThrowExpression</a></emu-nt>
+        <emu-nt id="_ref_15"><a href="#prod-ThrowExpression">ThrowExpression</a></emu-nt>
     </emu-rhs></ins>
 </emu-production>
 <emu-production name="ExponentiationExpression">
@@ -2820,9 +2820,9 @@ li.menu-search-result-term:before {
     <emu-nt><a href="https://tc39.es/ecma262/#prod-ConditionalExpression">ConditionalExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="d4vlxget">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-ShortCircuitExpression">ShortCircuitExpression</a></emu-nt>
         <emu-t>?</emu-t>
-        <emu-nt id="_ref_17"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_16"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
         <emu-t>:</emu-t>
-        <emu-nt id="_ref_18"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_17"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 <emu-production name="AssignmentExpression">
@@ -2832,34 +2832,34 @@ li.menu-search-result-term:before {
     <emu-rhs a="ijpo4eaq" id="prod-F_LSmUck">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a></emu-nt>
         <emu-t>=</emu-t>
-        <emu-nt id="_ref_19"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_18"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="xzqhr---" id="prod-t02tAu6_">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a></emu-nt>
-        <emu-nt id="_ref_20"><a href="#prod-AssignmentOperator">AssignmentOperator</a></emu-nt>
-        <emu-nt id="_ref_21"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_19"><a href="#prod-AssignmentOperator">AssignmentOperator</a></emu-nt>
+        <emu-nt id="_ref_20"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="devkzibl" id="prod-jgF9l9Ty">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a></emu-nt>
         <emu-t>&amp;&amp;=</emu-t>
-        <emu-nt id="_ref_22"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_21"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="dt1frwiy" id="prod-U8uU_bab">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a></emu-nt>
         <emu-t>||=</emu-t>
-        <emu-nt id="_ref_23"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_22"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="dbifpqxa" id="prod-ooZHsevq">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a></emu-nt>
         <emu-t>??=</emu-t>
-        <emu-nt id="_ref_24"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_23"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 <emu-production name="Expression">
     <emu-nt><a href="https://tc39.es/ecma262/#prod-Expression">Expression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="cwoazx1t">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-Expression">Expression</a></emu-nt>
         <emu-t>,</emu-t>
-        <emu-nt id="_ref_25"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_24"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 </emu-grammar>
@@ -3104,47 +3104,47 @@ li.menu-search-result-term:before {
     </emu-rhs>
     <emu-rhs a="vwgxygda">
         <emu-t>++</emu-t>
-        <emu-nt id="_ref_26"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_25"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="onrvwudi">
         <emu-t>--</emu-t>
-        <emu-nt id="_ref_27"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_26"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 <emu-production name="UnaryExpression">
     <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="v9wiw5nl" id="prod-JRAAw485">
         <emu-t>delete</emu-t>
-        <emu-nt id="_ref_28"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_27"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="5dgdjy7z" id="prod-L28J0B-W">
         <emu-t>void</emu-t>
-        <emu-nt id="_ref_29"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_28"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="qxosuesc" id="prod-_pp9tysE">
         <emu-t>typeof</emu-t>
-        <emu-nt id="_ref_30"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_29"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="o0kdmush" id="prod-vWffOcNW">
         <emu-t>+</emu-t>
-        <emu-nt id="_ref_31"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_30"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="odzkxnu5" id="prod-mkCLwyla">
         <emu-t>-</emu-t>
-        <emu-nt id="_ref_32"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_31"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="b9nqec7b" id="prod-vQJ1qlPd">
         <emu-t>~</emu-t>
-        <emu-nt id="_ref_33"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_32"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="ulcvcjyx" id="prod-2t1vDiwJ">
         <emu-t>!</emu-t>
-        <emu-nt id="_ref_34"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_33"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="shlomml6" id="prod-BbB1pUoP">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-AwaitExpression">AwaitExpression</a></emu-nt>
     </emu-rhs>
     <ins><emu-rhs a="z27rheny" id="prod-rCOCmDQm">
-        <emu-nt id="_ref_35"><a href="#prod-ThrowExpression">ThrowExpression</a></emu-nt>
+        <emu-nt id="_ref_34"><a href="#prod-ThrowExpression">ThrowExpression</a></emu-nt>
     </emu-rhs></ins>
 </emu-production>
 <emu-production name="ExponentiationExpression">
@@ -3295,9 +3295,9 @@ li.menu-search-result-term:before {
     <emu-nt><a href="https://tc39.es/ecma262/#prod-ConditionalExpression">ConditionalExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="d4vlxget">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-ShortCircuitExpression">ShortCircuitExpression</a></emu-nt>
         <emu-t>?</emu-t>
-        <emu-nt id="_ref_36"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_35"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
         <emu-t>:</emu-t>
-        <emu-nt id="_ref_37"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_36"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 <emu-production name="AssignmentExpression">
@@ -3313,34 +3313,34 @@ li.menu-search-result-term:before {
     <emu-rhs a="ijpo4eaq" id="prod--dpqOTdc">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a></emu-nt>
         <emu-t>=</emu-t>
-        <emu-nt id="_ref_38"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_37"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="xzqhr---" id="prod-DZjLGTZE">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a></emu-nt>
-        <emu-nt id="_ref_39"><a href="#prod-AssignmentOperator">AssignmentOperator</a></emu-nt>
-        <emu-nt id="_ref_40"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_38"><a href="#prod-AssignmentOperator">AssignmentOperator</a></emu-nt>
+        <emu-nt id="_ref_39"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="devkzibl" id="prod-7LWIIJBX">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a></emu-nt>
         <emu-t>&amp;&amp;=</emu-t>
-        <emu-nt id="_ref_41"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_40"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="dt1frwiy" id="prod-Bj3Q77v8">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a></emu-nt>
         <emu-t>||=</emu-t>
-        <emu-nt id="_ref_42"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_41"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
     <emu-rhs a="dbifpqxa" id="prod-Lo8Q8Acu">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a></emu-nt>
         <emu-t>??=</emu-t>
-        <emu-nt id="_ref_43"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_42"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 <emu-production name="Expression">
     <emu-nt><a href="https://tc39.es/ecma262/#prod-Expression">Expression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="cwoazx1t">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-Expression">Expression</a></emu-nt>
         <emu-t>,</emu-t>
-        <emu-nt id="_ref_44"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_43"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 </emu-grammar>
@@ -3354,7 +3354,7 @@ li.menu-search-result-term:before {
       <emu-grammar><emu-production name="ThrowExpression" collapsed="">
     <emu-nt><a href="#prod-ThrowExpression">ThrowExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="qxc9qkms" id="prod-04w7TEZA">
         <emu-t>throw</emu-t>
-        <emu-nt id="_ref_45"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_44"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 </emu-grammar>
@@ -3374,54 +3374,6 @@ li.menu-search-result-term:before {
 </emu-production>
 </emu-grammar>
       <emu-alg><ol><li>Return <emu-val>false</emu-val>.</li></ol></emu-alg>
-      <emu-grammar><emu-production name="UpdateExpression">
-    <emu-nt><a href="https://tc39.es/ecma262/#prod-UpdateExpression">UpdateExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="vwgxygda">
-        <emu-t>++</emu-t>
-        <emu-nt id="_ref_46"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
-    </emu-rhs>
-    <emu-rhs a="onrvwudi">
-        <emu-t>--</emu-t>
-        <emu-nt id="_ref_47"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
-    </emu-rhs>
-</emu-production>
-<emu-production name="UnaryExpression">
-    <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="v9wiw5nl" id="prod-OMK4f8YM">
-        <emu-t>delete</emu-t>
-        <emu-nt id="_ref_48"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
-    </emu-rhs>
-    <emu-rhs a="5dgdjy7z" id="prod-Q3lx-ZaJ">
-        <emu-t>void</emu-t>
-        <emu-nt id="_ref_49"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
-    </emu-rhs>
-    <emu-rhs a="qxosuesc" id="prod-0LQdXAPi">
-        <emu-t>typeof</emu-t>
-        <emu-nt id="_ref_50"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
-    </emu-rhs>
-    <emu-rhs a="o0kdmush" id="prod-ovuR0snB">
-        <emu-t>+</emu-t>
-        <emu-nt id="_ref_51"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
-    </emu-rhs>
-    <emu-rhs a="odzkxnu5" id="prod-QzbIEInE">
-        <emu-t>-</emu-t>
-        <emu-nt id="_ref_52"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
-    </emu-rhs>
-    <emu-rhs a="b9nqec7b" id="prod-b-cKKFjG">
-        <emu-t>~</emu-t>
-        <emu-nt id="_ref_53"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
-    </emu-rhs>
-    <emu-rhs a="ulcvcjyx" id="prod-KlHIwVVa">
-        <emu-t>!</emu-t>
-        <emu-nt id="_ref_54"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
-    </emu-rhs>
-</emu-production>
-<emu-production name="AwaitExpression">
-    <emu-nt><a href="https://tc39.es/ecma262/#prod-AwaitExpression">AwaitExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="7ylag141">
-        <emu-t>await</emu-t>
-        <emu-nt id="_ref_55"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
-    </emu-rhs>
-</emu-production>
-</emu-grammar>
-      <emu-alg><ol><li>Return <emu-xref aoid="ContainsThrowOnRight" id="_ref_2"><a href="#sec-static-semantics-containsthrow">ContainsThrowOnRight</a></emu-xref> of <emu-nt id="_ref_56"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>.</li></ol></emu-alg>
       <emu-grammar><emu-production name="ExponentiationExpression">
     <emu-nt><a href="https://tc39.es/ecma262/#prod-ExponentiationExpression">ExponentiationExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="0zbfzgb0">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-UpdateExpression">UpdateExpression</a></emu-nt>
@@ -3437,7 +3389,7 @@ li.menu-search-result-term:before {
     </emu-rhs>
 </emu-production>
 </emu-grammar>
-      <emu-alg><ol><li>Return <emu-xref aoid="ContainsThrowOnRight" id="_ref_3"><a href="#sec-static-semantics-containsthrow">ContainsThrowOnRight</a></emu-xref> of <emu-nt><a href="https://tc39.es/ecma262/#prod-ExponentiationExpression">ExponentiationExpression</a></emu-nt>.</li></ol></emu-alg>
+      <emu-alg><ol><li>Return <emu-xref aoid="ContainsThrowOnRight" id="_ref_2"><a href="#sec-static-semantics-containsthrow">ContainsThrowOnRight</a></emu-xref> of <emu-nt><a href="https://tc39.es/ecma262/#prod-ExponentiationExpression">ExponentiationExpression</a></emu-nt>.</li></ol></emu-alg>
       <emu-grammar><emu-production name="AdditiveExpression">
     <emu-nt><a href="https://tc39.es/ecma262/#prod-AdditiveExpression">AdditiveExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="dkl7f70y">
         <emu-nt><a href="https://tc39.es/ecma262/#prod-AdditiveExpression">AdditiveExpression</a></emu-nt>
@@ -3451,7 +3403,7 @@ li.menu-search-result-term:before {
     </emu-rhs>
 </emu-production>
 </emu-grammar>
-      <emu-alg><ol><li>Return <emu-xref aoid="ContainsThrowOnRight" id="_ref_4"><a href="#sec-static-semantics-containsthrow">ContainsThrowOnRight</a></emu-xref> of <emu-nt><a href="https://tc39.es/ecma262/#prod-MultiplicativeExpression">MultiplicativeExpression</a></emu-nt>.</li></ol></emu-alg>
+      <emu-alg><ol><li>Return <emu-xref aoid="ContainsThrowOnRight" id="_ref_3"><a href="#sec-static-semantics-containsthrow">ContainsThrowOnRight</a></emu-xref> of <emu-nt><a href="https://tc39.es/ecma262/#prod-MultiplicativeExpression">MultiplicativeExpression</a></emu-nt>.</li></ol></emu-alg>
     </emu-clause>
     </ins>
   </emu-clause>
@@ -3469,37 +3421,37 @@ li.menu-search-result-term:before {
     </emu-rhs>
     <emu-rhs a="qh6tas2i" id="prod-n3f1x4OA">
         <emu-t>delete</emu-t>
-        <emu-nt params="?Yield, ?Await" id="_ref_57"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?Yield, ?Await" id="_ref_45"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="d3t3dyzd" id="prod-bEnaiUfM">
         <emu-t>void</emu-t>
-        <emu-nt params="?Yield, ?Await" id="_ref_58"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?Yield, ?Await" id="_ref_46"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="atfv1ezt" id="prod-oOmRMvU8">
         <emu-t>typeof</emu-t>
-        <emu-nt params="?Yield, ?Await" id="_ref_59"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?Yield, ?Await" id="_ref_47"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="1zx-fkm3" id="prod-55Xz_E0Z">
         <emu-t>+</emu-t>
-        <emu-nt params="?Yield, ?Await" id="_ref_60"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?Yield, ?Await" id="_ref_48"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="lehvx30i" id="prod-yxAmCDj1">
         <emu-t>-</emu-t>
-        <emu-nt params="?Yield, ?Await" id="_ref_61"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?Yield, ?Await" id="_ref_49"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="mvwftuyy" id="prod-nw8eIftf">
         <emu-t>~</emu-t>
-        <emu-nt params="?Yield, ?Await" id="_ref_62"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?Yield, ?Await" id="_ref_50"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="cm7fnuig" id="prod-4lEraLTO">
         <emu-t>!</emu-t>
-        <emu-nt params="?Yield, ?Await" id="_ref_63"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?Yield, ?Await" id="_ref_51"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="dfqdbsrx" constraints="+Await" id="prod-zVi0tVGF"><emu-constraints>[+Await]</emu-constraints>
         <emu-nt params="?Yield"><a href="https://tc39.es/ecma262/#prod-AwaitExpression">AwaitExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <ins><emu-rhs a="aaega5wv" id="prod-5cVHRKTO">
-        <emu-nt params="?Yield, ?Await" id="_ref_64"><a href="#prod-ThrowExpression">ThrowExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?Yield, ?Await" id="_ref_52"><a href="#prod-ThrowExpression">ThrowExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs></ins>
 </emu-production>
 </emu-grammar>
@@ -3511,8 +3463,8 @@ li.menu-search-result-term:before {
       <emu-grammar type="definition"><emu-production name="ThrowExpression" params="Yield, Await" id="prod-ThrowExpression">
     <emu-nt params="Yield, Await"><a href="#prod-ThrowExpression">ThrowExpression</a><emu-mods><emu-params>[Yield, Await]</emu-params></emu-mods></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="plvxxic_" id="prod-ymHEaUid">
         <emu-t>throw</emu-t>
-        <emu-nt params="?Yield, ?Await" id="_ref_65"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
-        <emu-gann>[lookahead ∉ <emu-nt id="_ref_66"><a href="#prod-ThrowExpressionInvalidPunctuator">ThrowExpressionInvalidPunctuator</a></emu-nt>]</emu-gann>
+        <emu-nt params="?Yield, ?Await" id="_ref_53"><a href="#prod-UnaryExpression">UnaryExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-gann>[lookahead ∉ <emu-nt id="_ref_54"><a href="#prod-ThrowExpressionInvalidPunctuator">ThrowExpressionInvalidPunctuator</a></emu-nt>]</emu-gann>
     </emu-rhs>
 </emu-production>
 <emu-production name="ThrowExpressionInvalidPunctuator" oneof="" id="prod-ThrowExpressionInvalidPunctuator">
@@ -3525,11 +3477,11 @@ li.menu-search-result-term:before {
         <emu-grammar><emu-production name="ThrowExpression" collapsed="">
     <emu-nt><a href="#prod-ThrowExpression">ThrowExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="qxc9qkms">
         <emu-t>throw</emu-t>
-        <emu-nt id="_ref_67"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
+        <emu-nt id="_ref_55"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 </emu-grammar>
-        <emu-alg><ol><li>Let <var>exprRef</var> be ?&nbsp;<emu-xref aoid="Evaluation"><a href="https://tc39.es/ecma262/#sec-evaluation">Evaluation</a></emu-xref> of <emu-nt id="_ref_68"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>.</li><li>Let <var>exprValue</var> be ?&nbsp;<emu-xref aoid="GetValue"><a href="https://tc39.es/ecma262/#sec-getvalue">GetValue</a></emu-xref>(<var>exprRef</var>).</li><li>Return <emu-xref aoid="ThrowCompletion"><a href="https://tc39.es/ecma262/#sec-throwcompletion">ThrowCompletion</a></emu-xref>(<var>exprValue</var>).</li></ol></emu-alg>
+        <emu-alg><ol><li>Let <var>exprRef</var> be ?&nbsp;<emu-xref aoid="Evaluation"><a href="https://tc39.es/ecma262/#sec-evaluation">Evaluation</a></emu-xref> of <emu-nt id="_ref_56"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>.</li><li>Let <var>exprValue</var> be ?&nbsp;<emu-xref aoid="GetValue"><a href="https://tc39.es/ecma262/#sec-getvalue">GetValue</a></emu-xref>(<var>exprRef</var>).</li><li>Return <emu-xref aoid="ThrowCompletion"><a href="https://tc39.es/ecma262/#sec-throwcompletion">ThrowCompletion</a></emu-xref>(<var>exprValue</var>).</li></ol></emu-alg>
       </emu-clause>
     </emu-clause>
     </ins>
@@ -3552,7 +3504,7 @@ li.menu-search-result-term:before {
 </emu-grammar>
         <ul>
           <li>
-            It is a Syntax Error if <emu-xref aoid="ContainsThrowOnRight" id="_ref_5"><a href="#sec-static-semantics-containsthrow">ContainsThrowOnRight</a></emu-xref> of <emu-nt><a href="https://tc39.es/ecma262/#prod-MultiplicativeExpression">MultiplicativeExpression</a></emu-nt> is <emu-val>true</emu-val>.
+            It is a Syntax Error if <emu-xref aoid="ContainsThrowOnRight" id="_ref_4"><a href="#sec-static-semantics-containsthrow">ContainsThrowOnRight</a></emu-xref> of <emu-nt><a href="https://tc39.es/ecma262/#prod-MultiplicativeExpression">MultiplicativeExpression</a></emu-nt> is <emu-val>true</emu-val>.
           </li>
         </ul>
         <emu-note><span class="note">Note</span><div class="note-contents">
@@ -3591,7 +3543,7 @@ li.menu-search-result-term:before {
 </emu-grammar>
         <ul>
           <li>
-            It is a Syntax Error if <emu-xref aoid="ContainsThrowOnRight" id="_ref_6"><a href="#sec-static-semantics-containsthrow">ContainsThrowOnRight</a></emu-xref> of <emu-nt><a href="https://tc39.es/ecma262/#prod-AdditiveExpression">AdditiveExpression</a></emu-nt> is <emu-val>true</emu-val>.
+            It is a Syntax Error if <emu-xref aoid="ContainsThrowOnRight" id="_ref_5"><a href="#sec-static-semantics-containsthrow">ContainsThrowOnRight</a></emu-xref> of <emu-nt><a href="https://tc39.es/ecma262/#prod-AdditiveExpression">AdditiveExpression</a></emu-nt> is <emu-val>true</emu-val>.
           </li>
         </ul>
         <emu-note><span class="note">Note</span><div class="note-contents">
@@ -3627,32 +3579,32 @@ li.menu-search-result-term:before {
     <emu-rhs a="assignment" id="prod-eXKFjh2J">
         <emu-nt params="?Yield, ?Await"><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
         <emu-t>=</emu-t>
-        <emu-nt params="?In, ?Yield, ?Await" id="_ref_69"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?In, ?Yield, ?Await" id="_ref_57"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="3cvjfmjy" id="prod-shfKC2mw">
         <emu-nt params="?Yield, ?Await"><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
-        <emu-nt id="_ref_70"><a href="#prod-AssignmentOperator">AssignmentOperator</a></emu-nt>
-        <emu-nt params="?In, ?Yield, ?Await" id="_ref_71"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt id="_ref_58"><a href="#prod-AssignmentOperator">AssignmentOperator</a></emu-nt>
+        <emu-nt params="?In, ?Yield, ?Await" id="_ref_59"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="3bbinvbh" id="prod-hQLdzapj">
         <emu-nt params="?Yield, ?Await"><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
         <emu-t>&amp;&amp;=</emu-t>
-        <emu-nt params="?In, ?Yield, ?Await" id="_ref_72"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?In, ?Yield, ?Await" id="_ref_60"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="kvjhbccb" id="prod-w-48XpMo">
         <emu-nt params="?Yield, ?Await"><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
         <emu-t>||=</emu-t>
-        <emu-nt params="?In, ?Yield, ?Await" id="_ref_73"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?In, ?Yield, ?Await" id="_ref_61"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <emu-rhs a="cwe0lpyb" id="prod-7NM9KEaO">
         <emu-nt params="?Yield, ?Await"><a href="https://tc39.es/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
         <emu-t>??=</emu-t>
-        <emu-nt params="?In, ?Yield, ?Await" id="_ref_74"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?In, ?Yield, ?Await" id="_ref_62"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs>
     <ins><emu-rhs a="re4hrjyn">
-        <emu-nt params="?Yield, ?Await" id="_ref_75"><a href="#prod-ThrowExpression">ThrowExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?Yield, ?Await" id="_ref_63"><a href="#prod-ThrowExpression">ThrowExpression</a><emu-mods><emu-params>[?Yield, ?Await]</emu-params></emu-mods></emu-nt>
         <emu-t>/=</emu-t>
-        <emu-nt params="?In, ?Yield, ?Await" id="_ref_76"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
+        <emu-nt params="?In, ?Yield, ?Await" id="_ref_64"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?Await]</emu-params></emu-mods></emu-nt>
     </emu-rhs></ins>
 </emu-production>
 <emu-production name="AssignmentOperator" oneof="" id="prod-AssignmentOperator">
@@ -3667,9 +3619,9 @@ li.menu-search-result-term:before {
         <h1><span class="secnum">2.4.1.1</span> Static Semantics: Early Errors</h1>
         <emu-grammar><emu-production name="AssignmentExpression">
     <emu-nt><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt> <emu-geq>:</emu-geq> <emu-rhs a="iaoqzr2q">
-        <emu-nt id="_ref_77"><a href="#prod-ThrowExpression">ThrowExpression</a></emu-nt>
+        <emu-nt id="_ref_65"><a href="#prod-ThrowExpression">ThrowExpression</a></emu-nt>
         <emu-t>/=</emu-t>
-        <emu-nt id="_ref_78"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
+        <emu-nt id="_ref_66"><a href="#prod-AssignmentExpression">AssignmentExpression</a></emu-nt>
     </emu-rhs>
 </emu-production>
 </emu-grammar>
@@ -3717,11 +3669,11 @@ li.menu-search-result-term:before {
 </emu-grammar>
     <emu-note><span class="note">Note</span><div class="note-contents">
       <p>
-        An <emu-nt id="_ref_79"><a href="#prod-ExpressionStatement">ExpressionStatement</a></emu-nt> cannot start with a U+007B (LEFT CURLY BRACKET) because that might make it ambiguous with a <emu-nt><a href="https://tc39.es/ecma262/#prod-Block">Block</a></emu-nt>.
-        An <emu-nt id="_ref_80"><a href="#prod-ExpressionStatement">ExpressionStatement</a></emu-nt> cannot start with the <code>function</code> or <code>class</code> <emu-xref href="#sec-keywords-and-reserved-words"><a href="https://tc39.es/ecma262/#sec-keywords-and-reserved-words">keywords</a></emu-xref> because that would make it ambiguous with a <emu-nt><a href="https://tc39.es/ecma262/#prod-FunctionDeclaration">FunctionDeclaration</a></emu-nt>, a <emu-nt><a href="https://tc39.es/ecma262/#prod-GeneratorDeclaration">GeneratorDeclaration</a></emu-nt>, or a <emu-nt><a href="https://tc39.es/ecma262/#prod-ClassDeclaration">ClassDeclaration</a></emu-nt>.
-        An <emu-nt id="_ref_81"><a href="#prod-ExpressionStatement">ExpressionStatement</a></emu-nt> cannot start with <code>async function</code> because that would make it ambiguous with an <emu-nt><a href="https://tc39.es/ecma262/#prod-AsyncFunctionDeclaration">AsyncFunctionDeclaration</a></emu-nt>.
-        An <emu-nt id="_ref_82"><a href="#prod-ExpressionStatement">ExpressionStatement</a></emu-nt> cannot start with the two token sequence <code>let [</code> because that would make it ambiguous with a <code>let</code> <emu-nt><a href="https://tc39.es/ecma262/#prod-LexicalDeclaration">LexicalDeclaration</a></emu-nt> whose first <emu-nt><a href="https://tc39.es/ecma262/#prod-LexicalBinding">LexicalBinding</a></emu-nt> was an <emu-nt><a href="https://tc39.es/ecma262/#prod-ArrayBindingPattern">ArrayBindingPattern</a></emu-nt>.
-        <ins>An <emu-nt id="_ref_83"><a href="#prod-ExpressionStatement">ExpressionStatement</a></emu-nt> cannot start with <code>throw</code> because that would make it ambiguous with a <emu-nt><a href="https://tc39.es/ecma262/#prod-ThrowStatement">ThrowStatement</a></emu-nt>.</ins>
+        An <emu-nt id="_ref_67"><a href="#prod-ExpressionStatement">ExpressionStatement</a></emu-nt> cannot start with a U+007B (LEFT CURLY BRACKET) because that might make it ambiguous with a <emu-nt><a href="https://tc39.es/ecma262/#prod-Block">Block</a></emu-nt>.
+        An <emu-nt id="_ref_68"><a href="#prod-ExpressionStatement">ExpressionStatement</a></emu-nt> cannot start with the <code>function</code> or <code>class</code> <emu-xref href="#sec-keywords-and-reserved-words"><a href="https://tc39.es/ecma262/#sec-keywords-and-reserved-words">keywords</a></emu-xref> because that would make it ambiguous with a <emu-nt><a href="https://tc39.es/ecma262/#prod-FunctionDeclaration">FunctionDeclaration</a></emu-nt>, a <emu-nt><a href="https://tc39.es/ecma262/#prod-GeneratorDeclaration">GeneratorDeclaration</a></emu-nt>, or a <emu-nt><a href="https://tc39.es/ecma262/#prod-ClassDeclaration">ClassDeclaration</a></emu-nt>.
+        An <emu-nt id="_ref_69"><a href="#prod-ExpressionStatement">ExpressionStatement</a></emu-nt> cannot start with <code>async function</code> because that would make it ambiguous with an <emu-nt><a href="https://tc39.es/ecma262/#prod-AsyncFunctionDeclaration">AsyncFunctionDeclaration</a></emu-nt>.
+        An <emu-nt id="_ref_70"><a href="#prod-ExpressionStatement">ExpressionStatement</a></emu-nt> cannot start with the two token sequence <code>let [</code> because that would make it ambiguous with a <code>let</code> <emu-nt><a href="https://tc39.es/ecma262/#prod-LexicalDeclaration">LexicalDeclaration</a></emu-nt> whose first <emu-nt><a href="https://tc39.es/ecma262/#prod-LexicalBinding">LexicalBinding</a></emu-nt> was an <emu-nt><a href="https://tc39.es/ecma262/#prod-ArrayBindingPattern">ArrayBindingPattern</a></emu-nt>.
+        <ins>An <emu-nt id="_ref_71"><a href="#prod-ExpressionStatement">ExpressionStatement</a></emu-nt> cannot start with <code>throw</code> because that would make it ambiguous with a <emu-nt><a href="https://tc39.es/ecma262/#prod-ThrowStatement">ThrowStatement</a></emu-nt>.</ins>
       </p>
     </div></emu-note>
   </emu-clause>
