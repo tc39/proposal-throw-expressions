@@ -348,26 +348,6 @@ contributors: Ron Buckton, Ecma International
         1. Return *false*.
       </emu-alg>
       <emu-grammar>
-        UpdateExpression :
-          `++` UnaryExpression
-          `--` UnaryExpression
-
-        UnaryExpression :
-          `delete` UnaryExpression
-          `void` UnaryExpression
-          `typeof` UnaryExpression
-          `+` UnaryExpression
-          `-` UnaryExpression
-          `~` UnaryExpression
-          `!` UnaryExpression
-
-        AwaitExpression :
-          `await` UnaryExpression
-      </emu-grammar>
-      <emu-alg>
-        1. Return ContainsThrowOnRight of |UnaryExpression|.
-      </emu-alg>
-      <emu-grammar>
         ExponentiationExpression :
           UpdateExpression `**` ExponentiationExpression
 
