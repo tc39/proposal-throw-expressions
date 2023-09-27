@@ -427,7 +427,7 @@ contributors: Ron Buckton, Ecma International
         </emu-grammar>
         <ul>
           <li>
-            It is a Syntax Error if ContainsThrowOnRight of |MultiplicativeExpression| is *true*.
+            It is a Syntax Error if the source text matched by |MultiplicativeOperator| is `/` and ContainsThrowOnRight of |MultiplicativeExpression| is *true*.
           </li>
         </ul>
         <emu-note>
