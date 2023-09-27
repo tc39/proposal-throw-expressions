@@ -69,12 +69,12 @@ contributors: Ron Buckton, Ecma International
           `delete` UnaryExpression
           `void` UnaryExpression
           `typeof` UnaryExpression
-          <ins>`throw` UnaryExpression</ins>
           `+` UnaryExpression
           `-` UnaryExpression
           `~` UnaryExpression
           `!` UnaryExpression
           AwaitExpression
+          <ins>ThrowExpression</ins>
 
         ExponentiationExpression :
           UpdateExpression `**` ExponentiationExpression
@@ -253,12 +253,12 @@ contributors: Ron Buckton, Ecma International
           `delete` UnaryExpression
           `void` UnaryExpression
           `typeof` UnaryExpression
-          <ins>`throw` UnaryExpression</ins>
           `+` UnaryExpression
           `-` UnaryExpression
           `~` UnaryExpression
           `!` UnaryExpression
           AwaitExpression
+          <ins>ThrowExpression</ins>
 
         ExponentiationExpression :
           UpdateExpression `**` ExponentiationExpression
@@ -334,6 +334,10 @@ contributors: Ron Buckton, Ecma International
       <h1>Static Semantics: ContainsThrowOnRight ( ): a Boolean</h1>
       <dl class="header">
       </dl>
+      <emu-grammar>ThrowExpression : `throw` UnaryExpression</emu-grammar>
+      <emu-alg>
+        1. Return *true*.
+      </emu-alg>
       <emu-grammar>
         UpdateExpression :
           LeftHandSideExpression
@@ -347,17 +351,7 @@ contributors: Ron Buckton, Ecma International
         UpdateExpression :
           `++` UnaryExpression
           `--` UnaryExpression
-      </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |UnaryExpression| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>AwaitExpression : `await` UnaryExpression</emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |UnaryExpression| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>
+
         UnaryExpression :
           `delete` UnaryExpression
           `void` UnaryExpression
@@ -366,19 +360,22 @@ contributors: Ron Buckton, Ecma International
           `-` UnaryExpression
           `~` UnaryExpression
           `!` UnaryExpression
+
+        AwaitExpression :
+          `await` UnaryExpression
       </emu-grammar>
       <emu-alg>
-        1. If ContainsThrowOnRight of |UnaryExpression| is *true*, return *true*
-        1. Return *false*.
+        1. Return ContainsThrowOnRight of |UnaryExpression|.
       </emu-alg>
-      <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>
+      <emu-grammar>
+        ExponentiationExpression :
+          UpdateExpression `**` ExponentiationExpression
+
+        MultiplicativeExpression :
+          MultiplicativeExpression MultiplicativeOperator ExponentiationExpression
+      </emu-grammar>
       <emu-alg>
-        1. Return *true*.
-      </emu-alg>
-      <emu-grammar>ExponentiationExpression : UpdateExpression `**` ExponentiationExpression</emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |ExponentationExpression| is *true*, return *true*
-        1. Return *false*.
+        1. Return ContainsThrowOnRight of |ExponentiationExpression|.
       </emu-alg>
       <emu-grammar>
         AdditiveExpression :
@@ -386,140 +383,7 @@ contributors: Ron Buckton, Ecma International
           AdditiveExpression `-` MultiplicativeExpression
       </emu-grammar>
       <emu-alg>
-        1. If ContainsThrowOnRight of |MultiplicativeExpression| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>
-        ShiftExpression :
-          ShiftExpression `&lt;&lt;` AdditiveExpression
-          ShiftExpression `&gt;&gt;` AdditiveExpression
-          ShiftExpression `&gt;&gt;&gt;` AdditiveExpression
-      </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |AdditiveExpression| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>
-        RelationalExpression :
-          RelationalExpression `&lt;` ShiftExpression
-          RelationalExpression `&gt;` ShiftExpression
-          RelationalExpression `&lt;=` ShiftExpression
-          RelationalExpression `&gt;=` ShiftExpression
-          RelationalExpression `instanceof` ShiftExpression
-          RelationalExpression `in` ShiftExpression
-          PrivateIdentifier `in` ShiftExpression
-      </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |ShiftExpression| is *true*, return *true*.
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>
-        EqualityExpression :
-          EqualityExpression `==` RelationalExpression
-          EqualityExpression `!=` RelationalExpression
-          EqualityExpression `===` RelationalExpression
-          EqualityExpression `!==` RelationalExpression
-      </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |RelationalExpression| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>BitwiseANDExpression : BitwiseANDExpression `&amp;` EqualityExpression </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |EqualityExpression| is *true*, return *true*.
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>BitwiseXORExpression : BitwiseXORExpression `^` BitwiseANDExpression </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |BitwiseANDExpression| is *true*, return *true*.
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>BitwiseORExpression : BitwiseORExpression `^` BitwiseXORExpression </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |BitwiseXORExpression| is *true*, return *true*.
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>LogicalANDExpression : LogicalANDExpression `&amp;&amp;` BitwiseORExpression </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |BitwiseORExpression| is *true*, return *true*.
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>LogicalORExpression : LogicalORExpression `||` LogicalANDExpression </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |LogicalANDExpression| is *true*, return *true*.
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>CoalesceExpression : CoalesceExpressionHead `??` BitwiseORExpression </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |BitwiseORExpression| is *true*, return *true*.
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>ConditionalExpression : ShortCircuitExpression `?` AssignmentExpression `:` AssignmentExpression </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |AssignmentExpression| is *true*, return *true*.
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>
-        AssignmentExpression :
-          LeftHandSideExpression `=` AssignmentExpression
-          LeftHandSideExpression AssignmentOperator AssignmentExpression
-          LeftHandSideExpression `&amp;&amp;=` AssignmentExpression
-          LeftHandSideExpression `||=` AssignmentExpression
-          LeftHandSideExpression `??=` AssignmentExpression
-      </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |AssignmentExpression| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>
-        YieldExpression :
-          `yield` AssignmentExpression
-          `yield` `*` AssignmentExpression
-      </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |AssignmentExpression| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>YieldExpression : `yield`</emu-grammar>
-      <emu-alg>
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>ArrowFunction : ArrowParameters `=>` ConciseBody</emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |ConciseBody| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>ConciseBody : ExpressionBody</emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |ExpressionBody| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>ConciseBody : `{` FunctionBody `}`</emu-grammar>
-      <emu-alg>
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>
-        AsyncArrowFunction :
-          `async` AsyncArrowBindingIdentifier `=>` AsyncConciseBody
-          CoverCallExpressionAndAsyncArrowHead `=>` AsyncConciseBody
-      </emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |AsyncConciseBody| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>AsyncConciseBody : ExpressionBody</emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |ExpressionBody| is *true*, return *true*
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>AsyncConciseBody : `{` AsyncFunctionBody `}`</emu-grammar>
-      <emu-alg>
-        1. Return *false*.
-      </emu-alg>
-      <emu-grammar>Expression : Expression `,` AssignmentExpression</emu-grammar>
-      <emu-alg>
-        1. If ContainsThrowOnRight of |AssignmentExpression| is *true*, return *true*
-        1. Return *false*.
+        1. Return ContainsThrowOnRight of |MultiplicativeExpression|.
       </emu-alg>
     </emu-clause>
     </ins>
@@ -538,23 +402,28 @@ contributors: Ron Buckton, Ecma International
         `delete` UnaryExpression[?Yield, ?Await]
         `void` UnaryExpression[?Yield, ?Await]
         `typeof` UnaryExpression[?Yield, ?Await]
-        <ins>`throw` UnaryExpression[?Yield, ?Await] [lookahead ∉ ThrowExpressionInvalidPunctuator]</ins>
         `+` UnaryExpression[?Yield, ?Await]
         `-` UnaryExpression[?Yield, ?Await]
         `~` UnaryExpression[?Yield, ?Await]
         `!` UnaryExpression[?Yield, ?Await]
         [+Await] AwaitExpression[?Yield]
-
-      <ins class="block">
-        ThrowExpressionInvalidPunctuator : one of `,` `&lt;` `>` `&lt;=` `>=` `==` `!=` `===` `!==` `*` `%` `**` `&lt;&lt;` `>>` `>>>` `&` `|` `^` `&&` `||` `??` `?`
-      </ins>
+        <ins>ThrowExpression[?Yield, ?Await]</ins>
     </emu-grammar>
 
+    <ins class="block">
     <emu-clause id="sec-throw-operator">
       <h1><ins>The `throw` Operator</ins></h1>
+      <h2>Syntax</h2>
+      <emu-grammar type="definition">
+        ThrowExpression[Yield, Await] :
+          `throw` UnaryExpression[?Yield, ?Await] [lookahead ∉ ThrowExpressionInvalidPunctuator]
+
+        ThrowExpressionInvalidPunctuator : one of `,` `&lt;` `>` `&lt;=` `>=` `==` `!=` `===` `!==` `*` `%` `**` `&lt;&lt;` `>>` `>>>` `&` `|` `^` `&&` `||` `??` `?`
+      </emu-grammar>
+
       <emu-clause id="sec-throw-operator-runtime-semantics-evaluation">
         <h1>Runtime Semantics: Evaluation</h1>
-        <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>
+        <emu-grammar>ThrowExpression : `throw` UnaryExpression</emu-grammar>
         <emu-alg>
           1. Let _exprRef_ be ? Evaluation of |UnaryExpression|.
           1. Let _exprValue_ be ? GetValue(_exprRef_).
@@ -562,14 +431,15 @@ contributors: Ron Buckton, Ecma International
         </emu-alg>
       </emu-clause>
     </emu-clause>
+    </ins>
   </emu-clause>
 
   <emu-clause id="sec-multiplicative-operators">
     <h1>Multiplicative Operators</h1>
     <ins class="block">
-    <emu-clause id="sec-assignment-operators-static-semantics">
+    <emu-clause id="sec-multiplicative-operators-static-semantics">
       <h1>Static Semantics</h1>
-      <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
+      <emu-clause id="sec-multiplicative-operators-static-semantics-early-errors">
         <h1>Static Semantics: Early Errors</h1>
         <emu-grammar>
           MultiplicativeExpression :
@@ -601,9 +471,9 @@ contributors: Ron Buckton, Ecma International
   <emu-clause id="sec-additive-operators">
     <h1>Additive Operators</h1>
     <ins class="block">
-    <emu-clause id="sec-assignment-operators-static-semantics">
+    <emu-clause id="sec-additive-operators-static-semantics">
       <h1>Static Semantics</h1>
-      <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
+      <emu-clause id="sec-additive-operators-static-semantics-early-errors">
         <h1>Static Semantics: Early Errors</h1>
         <emu-grammar>
           AdditiveExpression :
@@ -635,6 +505,25 @@ contributors: Ron Buckton, Ecma International
 
   <emu-clause id="sec-assignment-operators">
     <h1>Assignment Operators</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      AssignmentExpression[In, Yield, Await] :
+        ConditionalExpression[?In, ?Yield, ?Await]
+        [+Yield] YieldExpression[?In, ?Await]
+        ArrowFunction[?In, ?Yield, ?Await]
+        AsyncArrowFunction[?In, ?Yield, ?Await]
+        LeftHandSideExpression[?Yield, ?Await] `=` AssignmentExpression[?In, ?Yield, ?Await] #assignment
+        LeftHandSideExpression[?Yield, ?Await] AssignmentOperator AssignmentExpression[?In, ?Yield, ?Await]
+        LeftHandSideExpression[?Yield, ?Await] `&amp;&amp;=` AssignmentExpression[?In, ?Yield, ?Await]
+        LeftHandSideExpression[?Yield, ?Await] `||=` AssignmentExpression[?In, ?Yield, ?Await]
+        LeftHandSideExpression[?Yield, ?Await] `??=` AssignmentExpression[?In, ?Yield, ?Await]
+        <ins>ThrowExpression[?Yield, ?Await] `/=` AssignmentExpression[?In, ?Yield, ?Await]</ins>
+
+      // emu-format ignore
+      AssignmentOperator : one of
+        `*=` `/=` `%=` `+=` `-=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `^=` `|=` `**=`
+    </emu-grammar>
+
     <ins class="block">
     <emu-clause id="sec-assignment-operators-static-semantics">
       <h1>Static Semantics</h1>
@@ -642,17 +531,17 @@ contributors: Ron Buckton, Ecma International
         <h1>Static Semantics: Early Errors</h1>
         <emu-grammar>
           AssignmentExpression :
-            LeftHandSideExpression `/=` AssignmentExpression
+            ThrowExpression `/=` AssignmentExpression
         </emu-grammar>
         <ul>
           <li>
-            It is a Syntax Error if ContainsThrowOnRight of |LeftHandSideExpression| is *true*.
+            It is a Syntax Error if any source text is matched by this production.
           </li>
         </ul>
         <emu-note>
           <p>This production exists in order to prevent automatic semicolon insertion rules (<emu-xref href="#sec-automatic-semicolon-insertion"></emu-xref>) from being applied to the following code:</p>
           <pre><code class="javascript">
-            a ?? throw b
+            a = throw b
             /= c / d
           </code></pre>
           <p>so that it would be interpreted as two valid statements. The purpose is to maintain consistency with similar code using |ThrowStatement|:</p>
