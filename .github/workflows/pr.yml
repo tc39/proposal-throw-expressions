@@ -7,18 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.number }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: npm install --legacy-peer-deps
       - run: npm run compile
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: docs
           target-folder: pr/${{ github.event.number }}/
       - id: get-preview-url
         name: Get preview url
-        run: echo "::set-output name=preview-url::https://tc39.es/$(basename $GITHUB_REPOSITORY)/pr/${{ github.event.number }}"
+        run: echo "preview-url=https://tc39.es/$(basename "$GITHUB_REPOSITORY")/pr/${{ github.event.number }}" >> "$GITHUB_OUTPUT"
         shell: bash
       - name: Post Preview Comment
         uses: phulsechinmay/rewritable-pr-comment@v0.3.0
