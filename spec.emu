@@ -2,7 +2,6 @@
 <meta charset="utf8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <link rel="spec" href="es2017" />
-<script src="ecmarkup.js"></script>
 <pre class="metadata">
 title: ECMAScript 'throw' expressions
 status: proposal
@@ -43,6 +42,11 @@ contributors: Ron Buckton, Ecma International
           RegularExpressionLiteral
           TemplateLiteral
 
+        <ins class="block">
+        ThrowExpression :
+          `throw` Expression
+        </ins>
+
         MemberExpression :
           MemberExpression `[` Expression `]`
           MemberExpression `.` IdentifierName
@@ -69,7 +73,6 @@ contributors: Ron Buckton, Ecma International
           `delete` UnaryExpression
           `void` UnaryExpression
           `typeof` UnaryExpression
-          <ins>`throw` UnaryExpression</ins>
           `+` UnaryExpression
           `-` UnaryExpression
           `~` UnaryExpression
@@ -220,6 +223,11 @@ contributors: Ron Buckton, Ecma International
           RegularExpressionLiteral
           TemplateLiteral
 
+        <ins class="block">
+        ThrowExpression :
+          `throw` Expression
+        </ins>
+
         CallExpression :
           CoverCallExpressionAndAsyncArrowHead
           SuperCall
@@ -253,7 +261,6 @@ contributors: Ron Buckton, Ecma International
           `delete` UnaryExpression
           `void` UnaryExpression
           `typeof` UnaryExpression
-          <ins>`throw` UnaryExpression</ins>
           `+` UnaryExpression
           `-` UnaryExpression
           `~` UnaryExpression
@@ -334,60 +341,448 @@ contributors: Ron Buckton, Ecma International
 <emu-clause id="sec-ecmascript-language-expressions">
   <h1>ECMAScript Language: Expressions</h1>
 
-  <emu-clause id="sec-unary-operators">
-    <h1>Unary Operators</h1>
+  <emu-clause id="sec-primary-expression">
+    <h1>Primary Expression</h1>
     <h2>Syntax</h2>
     <emu-grammar type="definition">
-      UnaryExpression[Yield, Await] :
-        UpdateExpression[?Yield, ?Await]
-        `delete` UnaryExpression[?Yield, ?Await]
-        `void` UnaryExpression[?Yield, ?Await]
-        `typeof` UnaryExpression[?Yield, ?Await]
-        <ins>`throw` UnaryExpression[?Yield, ?Await] [lookahead ∉ ThrowExpressionInvalidPunctuator]</ins>
-        `+` UnaryExpression[?Yield, ?Await]
-        `-` UnaryExpression[?Yield, ?Await]
-        `~` UnaryExpression[?Yield, ?Await]
-        `!` UnaryExpression[?Yield, ?Await]
-        [+Await] AwaitExpression[?Yield]
+      PrimaryExpression[Yield, Await] :
+        `this`
+        IdentifierReference[?Yield, ?Await]
+        Literal
+        ArrayLiteral[?Yield, ?Await]
+        ObjectLiteral[?Yield, ?Await]
+        FunctionExpression
+        ClassExpression[?Yield, ?Await]
+        GeneratorExpression
+        AsyncFunctionExpression
+        AsyncGeneratorExpression
+        RegularExpressionLiteral
+        TemplateLiteral[?Yield, ?Await, ~Tagged]
+        CoverParenthesizedExpressionAndArrowParameterList[?Yield, ?Await] #parencover
 
-      <ins class="block">
-        ThrowExpressionInvalidPunctuator : one of `,` `&lt;` `>` `&lt;=` `>=` `==` `!=` `===` `!==` `+` `-` `*` `/` `%` `**` `&lt;&lt;` `>>` `>>>` `&` `|` `^` `&&` `||` `??` `=` `+=` `-=` `*=` `/=` `%=` `**=` `&lt;&lt;=` `>>=` `>>>=` `&=` `|=` `^=` `&&=` `||=` `??=` `?`
-      </ins>
+      CoverParenthesizedExpressionAndArrowParameterList[Yield, Await] :
+        `(` Expression[+In, ?Yield, ?Await] `)`
+        `(` Expression[+In, ?Yield, ?Await] `,` `)`
+        <ins>`(` ThrowExpression[?Yield, ?Await] `)`</ins>
+        `(` `)`
+        `(` `...` BindingIdentifier[?Yield, ?Await] `)`
+        `(` `...` BindingPattern[?Yield, ?Await] `)`
+        `(` Expression[+In, ?Yield, ?Await] `,` `...` BindingIdentifier[?Yield, ?Await] `)`
+        `(` Expression[+In, ?Yield, ?Await] `,` `...` BindingPattern[?Yield, ?Await] `)`
     </emu-grammar>
-  </emu-clause>
+    <h2>Supplemental Syntax</h2>
+    <p>
+      When processing an instance of the production<br>
+      <emu-grammar>PrimaryExpression[Yield, Await] : CoverParenthesizedExpressionAndArrowParameterList[?Yield, ?Await]</emu-grammar><br>
+      the interpretation of |CoverParenthesizedExpressionAndArrowParameterList| is refined using the following grammar:
+    </p>
+    <emu-grammar type="definition">
+      ParenthesizedExpression[Yield, Await] :
+        `(` Expression[+In, ?Yield, ?Await] `)`
+        <ins>`(` ThrowExpression[?Yield, ?Await] `)`
+    </emu-grammar>
 
+    <emu-clause id="sec-grouping-operator">
+      <h1>The Grouping Operator</h1>
+
+      <emu-clause id="sec-grouping-operator-static-semantics-early-errors">
+        <h1>Static Semantics: Early Errors</h1>
+        <emu-grammar>PrimaryExpression : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+        <ul>
+          <li>
+            |CoverParenthesizedExpressionAndArrowParameterList| must cover a |ParenthesizedExpression|.
+          </li>
+        </ul>
+      </emu-clause>
+
+      <emu-clause id="sec-grouping-operator-runtime-semantics-evaluation" type="sdo">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>PrimaryExpression : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+        <emu-alg>
+          1. Let _expr_ be the |ParenthesizedExpression| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
+          1. Return ? Evaluation of _expr_.
+        </emu-alg>
+        <emu-grammar>ParenthesizedExpression : `(` Expression `)`</emu-grammar>
+        <emu-alg>
+          1. Return ? Evaluation of |Expression|. This may be of type Reference.
+        </emu-alg>
+        <emu-note>
+          <p>This algorithm does not apply GetValue to Evaluation of |Expression|. The principal motivation for this is so that operators such as `delete` and `typeof` may be applied to parenthesized expressions.</p>
+        </emu-note>
+        <ins class="block">
+        <emu-grammar>ParenthesizedExpression : `(` ThrowExpression `)`</emu-grammar>
+        <emu-alg>
+          1. Return ? Evaluation of |ThrowExpression|.
+        </emu-alg>
+        </ins>
+      </emu-clause>
+    </emu-clause>
+
+  </emu-grammar>
+
+  <ins class="block">
   <emu-clause id="sec-throw-operator">
     <h1><ins>The `throw` Operator</ins></h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition">
+      ThrowExpression[Yield, Await] :
+        `throw` Expression[?In, ?Yield, ?Await]
+    </emu-grammar>
+
     <emu-clause id="sec-throw-operator-runtime-semantics-evaluation">
       <h1>Runtime Semantics: Evaluation</h1>
-      <emu-grammar>UnaryExpression : `throw` UnaryExpression</emu-grammar>
+      <emu-grammar>ThrowExpression : `throw` Expression</emu-grammar>
       <emu-alg>
-        1. Let _exprRef_ be ? Evaluation of |UnaryExpression|.
+        1. Let _exprRef_ be ? Evaluation of |Expression|.
         1. Let _exprValue_ be ? GetValue(_exprRef_).
         1. Return ThrowCompletion(_exprValue_).
       </emu-alg>
     </emu-clause>
   </emu-clause>
+  </ins>
 </emu-clause>
 
-<emu-clause id="sec-ecmascript-language-statements-and-declarations">
-  <h1>ECMAScript Language: Statements and Declarations</h1>
-  <emu-clause id="sec-expression-statement">
-    <h1>Expression Statement</h1>
-    <h2>Syntax</h2>
-    <emu-grammar type="definition">
-      ExpressionStatement[Yield, Await] :
-        <del>[lookahead &notin; { `{`, `function`, `async` [no LineTerminator here] `function`, `class`, `let [` }] Expression[+In, ?Yield, ?Await] `;`</del>
-        <ins>[lookahead &notin; { `{`, `function`, `async` [no LineTerminator here] `function`, `class`, `let [`, `throw` }] Expression[+In, ?Yield, ?Await] `;`</ins>
-    </emu-grammar>
-    <emu-note>
-      <p>
-        An |ExpressionStatement| cannot start with a U+007B (LEFT CURLY BRACKET) because that might make it ambiguous with a |Block|.
-        An |ExpressionStatement| cannot start with the `function` or `class` keywords because that would make it ambiguous with a |FunctionDeclaration|, a |GeneratorDeclaration|, or a |ClassDeclaration|.
-        An |ExpressionStatement| cannot start with `async function` because that would make it ambiguous with an |AsyncFunctionDeclaration|.
-        An |ExpressionStatement| cannot start with the two token sequence `let [` because that would make it ambiguous with a `let` |LexicalDeclaration| whose first |LexicalBinding| was an |ArrayBindingPattern|.
-        <ins>An |ExpressionStatement| cannot start with `throw` because that would make it ambiguous with a |ThrowStatement|.</ins>
-      </p>
-    </emu-note>
+<emu-clause id="sec-ecmascript-language-functions-and-classes">
+  <h1>ECMAScript Language: Functions and Classes</h1>
+  <emu-clause id="sec-tail-position-calls">
+    <h1>Tail Position Calls</h1>
+    <emu-clause id="sec-static-semantics-hascallintailposition" type="sdo" oldids="sec-statement-rules,sec-expression-rules">
+      <h1>
+        Static Semantics: HasCallInTailPosition (
+          _call_: a |CallExpression| Parse Node, a |MemberExpression| Parse Node, or an |OptionalChain| Parse Node,
+        ): a Boolean
+      </h1>
+      <dl class="header">
+      </dl>
+      <emu-note>
+        <p>_call_ is a Parse Node that represents a specific range of source text. When the following algorithms compare _call_ to another Parse Node, it is a test of whether they represent the same source text.</p>
+      </emu-note>
+      <emu-note>
+        <p>A potential tail position call that is immediately followed by return GetValue of the call result is also a possible tail position call. A function call cannot return a Reference Record, so such a GetValue operation will always return the same value as the actual function call result.</p>
+      </emu-note>
+
+      <emu-grammar>StatementList : StatementList StatementListItem</emu-grammar>
+      <emu-alg>
+        1. Let _has_ be HasCallInTailPosition of |StatementList| with argument _call_.
+        1. If _has_ is *true*, return *true*.
+        1. Return HasCallInTailPosition of |StatementListItem| with argument _call_.
+      </emu-alg>
+      <emu-grammar>
+        FunctionStatementList :
+          [empty]
+
+        StatementListItem :
+          Declaration
+
+        Statement :
+          VariableStatement
+          EmptyStatement
+          ExpressionStatement
+          ContinueStatement
+          BreakStatement
+          ThrowStatement
+          DebuggerStatement
+
+        Block :
+          `{` `}`
+
+        ReturnStatement :
+          `return` `;`
+
+        LabelledItem :
+          FunctionDeclaration
+
+        ForInOfStatement :
+          `for` `(` LeftHandSideExpression `of` AssignmentExpression `)` Statement
+          `for` `(` `var` ForBinding `of` AssignmentExpression `)` Statement
+          `for` `(` ForDeclaration `of` AssignmentExpression `)` Statement
+
+        CaseBlock :
+          `{` `}`
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>IfStatement : `if` `(` Expression `)` Statement `else` Statement</emu-grammar>
+      <emu-alg>
+        1. Let _has_ be HasCallInTailPosition of the first |Statement| with argument _call_.
+        1. If _has_ is *true*, return *true*.
+        1. Return HasCallInTailPosition of the second |Statement| with argument _call_.
+      </emu-alg>
+      <emu-grammar>
+        IfStatement :
+          `if` `(` Expression `)` Statement
+
+        DoWhileStatement :
+          `do` Statement `while` `(` Expression `)` `;`
+
+        WhileStatement :
+          `while` `(` Expression `)` Statement
+
+        ForStatement :
+          `for` `(` Expression? `;` Expression? `;` Expression? `)` Statement
+          `for` `(` `var` VariableDeclarationList `;` Expression? `;` Expression? `)` Statement
+          `for` `(` LexicalDeclaration Expression? `;` Expression? `)` Statement
+
+        ForInOfStatement :
+          `for` `(` LeftHandSideExpression `in` Expression `)` Statement
+          `for` `(` `var` ForBinding `in` Expression `)` Statement
+          `for` `(` ForDeclaration `in` Expression `)` Statement
+
+        WithStatement :
+          `with` `(` Expression `)` Statement
+      </emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |Statement| with argument _call_.
+      </emu-alg>
+      <emu-grammar>
+        LabelledStatement :
+          LabelIdentifier `:` LabelledItem
+      </emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |LabelledItem| with argument _call_.
+      </emu-alg>
+      <emu-grammar>ReturnStatement : `return` Expression `;`</emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |Expression| with argument _call_.
+      </emu-alg>
+      <emu-grammar>SwitchStatement : `switch` `(` Expression `)` CaseBlock</emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |CaseBlock| with argument _call_.
+      </emu-alg>
+      <emu-grammar>CaseBlock : `{` CaseClauses? DefaultClause CaseClauses? `}`</emu-grammar>
+      <emu-alg>
+        1. Let _has_ be *false*.
+        1. If the first |CaseClauses| is present, let _has_ be HasCallInTailPosition of the first |CaseClauses| with argument _call_.
+        1. If _has_ is *true*, return *true*.
+        1. Let _has_ be HasCallInTailPosition of |DefaultClause| with argument _call_.
+        1. If _has_ is *true*, return *true*.
+        1. If the second |CaseClauses| is present, let _has_ be HasCallInTailPosition of the second |CaseClauses| with argument _call_.
+        1. Return _has_.
+      </emu-alg>
+      <emu-grammar>CaseClauses : CaseClauses CaseClause</emu-grammar>
+      <emu-alg>
+        1. Let _has_ be HasCallInTailPosition of |CaseClauses| with argument _call_.
+        1. If _has_ is *true*, return *true*.
+        1. Return HasCallInTailPosition of |CaseClause| with argument _call_.
+      </emu-alg>
+      <emu-grammar>
+        CaseClause : `case` Expression `:` StatementList?
+
+        DefaultClause : `default` `:` StatementList?
+      </emu-grammar>
+      <emu-alg>
+        1. If |StatementList| is present, return HasCallInTailPosition of |StatementList| with argument _call_.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>TryStatement : `try` Block Catch</emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |Catch| with argument _call_.
+      </emu-alg>
+      <emu-grammar>
+        TryStatement :
+          `try` Block Finally
+          `try` Block Catch Finally
+      </emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |Finally| with argument _call_.
+      </emu-alg>
+      <emu-grammar>Catch : `catch` `(` CatchParameter `)` Block</emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |Block| with argument _call_.
+      </emu-alg>
+
+      <emu-grammar>
+        AssignmentExpression :
+          YieldExpression
+          ArrowFunction
+          AsyncArrowFunction
+          LeftHandSideExpression `=` AssignmentExpression
+          LeftHandSideExpression AssignmentOperator AssignmentExpression
+          LeftHandSideExpression `&amp;&amp;=` AssignmentExpression
+          LeftHandSideExpression `||=` AssignmentExpression
+          LeftHandSideExpression `??=` AssignmentExpression
+
+        BitwiseANDExpression :
+          BitwiseANDExpression `&amp;` EqualityExpression
+
+        BitwiseXORExpression :
+          BitwiseXORExpression `^` BitwiseANDExpression
+
+        BitwiseORExpression :
+          BitwiseORExpression `|` BitwiseXORExpression
+
+        EqualityExpression :
+          EqualityExpression `==` RelationalExpression
+          EqualityExpression `!=` RelationalExpression
+          EqualityExpression `===` RelationalExpression
+          EqualityExpression `!==` RelationalExpression
+
+        RelationalExpression :
+          RelationalExpression `&lt;` ShiftExpression
+          RelationalExpression `&gt;` ShiftExpression
+          RelationalExpression `&lt;=` ShiftExpression
+          RelationalExpression `&gt;=` ShiftExpression
+          RelationalExpression `instanceof` ShiftExpression
+          RelationalExpression `in` ShiftExpression
+          PrivateIdentifier `in` ShiftExpression
+
+        ShiftExpression :
+          ShiftExpression `&lt;&lt;` AdditiveExpression
+          ShiftExpression `&gt;&gt;` AdditiveExpression
+          ShiftExpression `&gt;&gt;&gt;` AdditiveExpression
+
+        AdditiveExpression :
+          AdditiveExpression `+` MultiplicativeExpression
+          AdditiveExpression `-` MultiplicativeExpression
+
+        MultiplicativeExpression :
+          MultiplicativeExpression MultiplicativeOperator ExponentiationExpression
+
+        ExponentiationExpression :
+          UpdateExpression `**` ExponentiationExpression
+
+        UpdateExpression :
+          LeftHandSideExpression `++`
+          LeftHandSideExpression `--`
+          `++` UnaryExpression
+          `--` UnaryExpression
+
+        UnaryExpression :
+          `delete` UnaryExpression
+          `void` UnaryExpression
+          `typeof` UnaryExpression
+          `+` UnaryExpression
+          `-` UnaryExpression
+          `~` UnaryExpression
+          `!` UnaryExpression
+          AwaitExpression
+
+        CallExpression :
+          SuperCall
+          CallExpression `[` Expression `]`
+          CallExpression `.` IdentifierName
+          CallExpression `.` PrivateIdentifier
+
+        NewExpression :
+          `new` NewExpression
+
+        MemberExpression :
+          MemberExpression `[` Expression `]`
+          MemberExpression `.` IdentifierName
+          SuperProperty
+          MetaProperty
+          `new` MemberExpression Arguments
+          MemberExpression `.` PrivateIdentifier
+
+        <ins class="block">
+        ParenthesizedExpression :
+          `(` ThrowExpression `)`
+        </ins>
+
+        PrimaryExpression :
+          `this`
+          IdentifierReference
+          Literal
+          ArrayLiteral
+          ObjectLiteral
+          FunctionExpression
+          ClassExpression
+          GeneratorExpression
+          AsyncFunctionExpression
+          AsyncGeneratorExpression
+          RegularExpressionLiteral
+          TemplateLiteral
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        Expression :
+          AssignmentExpression
+          Expression `,` AssignmentExpression
+      </emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |AssignmentExpression| with argument _call_.
+      </emu-alg>
+      <emu-grammar>ConditionalExpression : ShortCircuitExpression `?` AssignmentExpression `:` AssignmentExpression</emu-grammar>
+      <emu-alg>
+        1. Let _has_ be HasCallInTailPosition of the first |AssignmentExpression| with argument _call_.
+        1. If _has_ is *true*, return *true*.
+        1. Return HasCallInTailPosition of the second |AssignmentExpression| with argument _call_.
+      </emu-alg>
+      <emu-grammar>LogicalANDExpression : LogicalANDExpression `&amp;&amp;` BitwiseORExpression</emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |BitwiseORExpression| with argument _call_.
+      </emu-alg>
+      <emu-grammar>LogicalORExpression : LogicalORExpression `||` LogicalANDExpression</emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |LogicalANDExpression| with argument _call_.
+      </emu-alg>
+      <emu-grammar>CoalesceExpression : CoalesceExpressionHead `??` BitwiseORExpression</emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |BitwiseORExpression| with argument _call_.
+      </emu-alg>
+      <emu-grammar>
+        CallExpression :
+          CoverCallExpressionAndAsyncArrowHead
+          CallExpression Arguments
+          CallExpression TemplateLiteral
+      </emu-grammar>
+      <emu-alg>
+        1. If this |CallExpression| is _call_, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        OptionalExpression :
+          MemberExpression OptionalChain
+          CallExpression OptionalChain
+          OptionalExpression OptionalChain
+      </emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |OptionalChain| with argument _call_.
+      </emu-alg>
+      <emu-grammar>
+        OptionalChain :
+          `?.` `[` Expression `]`
+          `?.` IdentifierName
+          `?.` PrivateIdentifier
+          OptionalChain `[` Expression `]`
+          OptionalChain `.` IdentifierName
+          OptionalChain `.` PrivateIdentifier
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        OptionalChain :
+          `?.` Arguments
+          OptionalChain Arguments
+      </emu-grammar>
+      <emu-alg>
+        1. If this |OptionalChain| is _call_, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>
+        MemberExpression :
+          MemberExpression TemplateLiteral
+      </emu-grammar>
+      <emu-alg>
+        1. If this |MemberExpression| is _call_, return *true*.
+        1. Return *false*.
+      </emu-alg>
+      <emu-grammar>PrimaryExpression : CoverParenthesizedExpressionAndArrowParameterList</emu-grammar>
+      <emu-alg>
+        1. Let _expr_ be the |ParenthesizedExpression| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
+        1. Return HasCallInTailPosition of _expr_ with argument _call_.
+      </emu-alg>
+      <emu-grammar>
+        ParenthesizedExpression :
+          `(` Expression `)`
+      </emu-grammar>
+      <emu-alg>
+        1. Return HasCallInTailPosition of |Expression| with argument _call_.
+      </emu-alg>
+    </emu-clause>
   </emu-clause>
 </emu-clause>
