@@ -19,13 +19,13 @@ A `throw` expression allows you to throw exceptions in expression contexts. For 
 
 * Parameter initializers
   ```js
-  function save(filename = throw new TypeError("Argument required")) {
+  function save(filename = (throw new TypeError("Argument required"))) {
   }
   ```
 * Arrow function bodies
   ```js
   lint(ast, { 
-    with: () => throw new Error("avoid using 'with' statements.")
+    with: () => (throw new Error("avoid using 'with' statements."))
   });
   ```
 * Conditional expressions
@@ -34,63 +34,78 @@ A `throw` expression allows you to throw exceptions in expression contexts. For 
     const encoder = encoding === "utf8" ? new UTF8Encoder() 
                   : encoding === "utf16le" ? new UTF16Encoder(false) 
                   : encoding === "utf16be" ? new UTF16Encoder(true) 
-                  : throw new Error("Unsupported encoding");
+                  : (throw new Error("Unsupported encoding"));
   }
   ```
 * Logical operations
   ```js
   class Product {
     get id() { return this._id; }
-    set id(value) { this._id = value || throw new Error("Invalid value"); }
+    set id(value) { this._id = value || (throw new Error("Invalid value")); }
   }
   ```
 
-A `throw` expression *does not* replace a `throw` statement due to the difference 
-in the precedence of their values. To maintain the precedence of the `throw` statement,
+A `throw` expression *does not* replace a `throw` statement. To maintain the precedence of the `throw` statement,
 we must add a lookahead restriction to `ExpressionStatement` to avoid ambiguity.
 
-Due to the difference in precedence between a `throw` expression and a _ThrowStatement_, certain operators to the right
-of the expression would parse differently between the two which could cause ambiguity and confusion:
+In order to avoid a difference in precedence between `throw` expression and a _ThrowStatement_, we want to ensure that
+operators within the expression are parsed in the same way in order to avoid ambiguity and confusion:
 
 ```js
 throw a ? b : c; // evaluates 'a' and throws either 'b' or 'c'
-(throw a ? b : c); // without restriction would throw 'a', so `?` is forbidden
+(throw a ? b : c);
 
 throw a, b; // evaluates 'a', throws 'b'
-(throw a, b); // would throw 'a', not 'b', so `,` is forbidden
+(throw a, b);
 
 throw a && b; // throws 'a' if 'a' is falsy, otherwise throws 'b'
-(throw a && b); // would always throw 'a', so `&&` is forbidden
+(throw a && b);
 
 throw a || b; // throws 'a' if 'a' is truthy, otherwise throws 'b'
-(throw a || b); // would always throw 'a', so `||` is forbidden
+(throw a || b);
 
 // ... etc.
 ```
 
-As a result, all binary operators and the `?` operator are forbidden to the right of a `throw` expression. To use these
-operators inside of a `throw` expression, the expression must be surrounded with parentheses:
+As a result, `throw` expressions are parsed at the same precedence as `,` expressions, and will usually require
+outer parentheses to be parsed correctly:
 
 ```js
-(throw (a, b)); // evaluates 'a', throws 'b'
-(throw (a ? b : c)); // evaluates 'a' and throws either 'b' or 'c'
-```
+(throw a, b); // evaluates 'a', throws 'b'
+(throw a ? b : c); // evaluates 'a' and throws either 'b' or 'c'
+a ? (throw b) : c;
 
-However, we do not forbid `:` so that a `throw` expression can still be easily used in a ternary:
+// moderately useful when paired with `break`, allowed without needing extra parenthesis:
+do { } while (throw a); 
+for (; throw a;) {}
+for (;; throw b) {}
 
-```js
-const x = a ? throw b : c; // if 'a' then throw 'b', else evaluate 'c'
+// nonsensical, but allowed without needing extra parentheses:
+if (throw a) { }
+while (throw a) { }
+for (throw a;;) { }
+for (let x in throw a) { }
+switch (throw a) { }
+switch (a) { case throw b: }
+return throw a;
+throw throw a;
+`${throw a}`;
+a[throw b];
+a?.[throw b];
 ```
 
 # Grammar
 
 ```diff grammarkdown
-++ThrowExpressionInvalidPunctuator : one of
-  `,` `<` `>` `<=` `>=` `==` `!=` `===` `!==` `+` `-` `*` `/` `%` `**` `<<` `>>` `>>>` `&` `|` `^` `&&` `||` `??`
-  `=` `+=` `-=` `*=` `%=` `**=` `<<=` `>>=` `>>>=` `&=` `|=` `^=` `&&=` `||=` `??=` `?`
+  Expression[In, Yield, Await] :
+-   AssignmentExpression[?In, ?Yield, ?Await]
+-   Expression[?In, ?Yield, ?Await] `,` AssignmentExpression[?In, ?Yield, ?Await]
++   CommaExpression[?In, ?Yield, ?Await]
++   `throw` Expression[?In, ?Yield, ?Await]
 
-  UnaryExpression[Yield, Await] :
-++  `throw` UnaryExpression[?Yield, ?Await] [lookahead ∉ ThrowExpressionInvalidPunctuator]
++ CommaExpression[In, Yield, Await] :
++   AssignmentExpression[?In, ?Yield, ?Await]
++   CommaExpression[?In, ?Yield, ?Await] `,` AssignmentExpression[?In, ?Yield, ?Await]
 
   ExpressionStatement[Yield, Await] :
 --  [lookahead ∉ {`{`, `function`, `async` [no |LineTerminator| here] `function`, `class`, `let [`}] Expression[+In, ?Yield, ?Await] `;`
