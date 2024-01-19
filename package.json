@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/tc39/proposal-throw-expressions#readme",
   "devDependencies": {
-    "@tc39/ecma262-biblio": "^2.0.2322",
+    "@tc39/ecma262-biblio": "^2.1.2669",
     "del": "^6.0.0",
-    "ecmarkup": "^12.1.0",
+    "ecmarkup": "^18.1.1",
     "gulp": "^4.0.2",
     "gulp-emu": "^2.1.0",
     "gulp-live-server": "0.0.31",
