@@ -361,9 +361,9 @@ contributors: Ron Buckton, Ecma International
         CoverParenthesizedExpressionAndArrowParameterList[?Yield, ?Await] #parencover
 
       CoverParenthesizedExpressionAndArrowParameterList[Yield, Await] :
-        `(` Expression[+In, ?Yield, ?Await] `)`
+        <del>`(` Expression[+In, ?Yield, ?Await] `)`</del>
+        <ins>`(` NestedExpression[?Yield, ?Await] `)`</ins>
         `(` Expression[+In, ?Yield, ?Await] `,` `)`
-        <ins>`(` ThrowExpression[?Yield, ?Await] `)`</ins>
         `(` `)`
         `(` `...` BindingIdentifier[?Yield, ?Await] `)`
         `(` `...` BindingPattern[?Yield, ?Await] `)`
@@ -378,8 +378,14 @@ contributors: Ron Buckton, Ecma International
     </p>
     <emu-grammar type="definition">
       ParenthesizedExpression[Yield, Await] :
-        `(` Expression[+In, ?Yield, ?Await] `)`
-        <ins>`(` ThrowExpression[?Yield, ?Await] `)`
+        <del>`(` Expression[+In, ?Yield, ?Await] `)`</del>
+        <ins>`(` NestedExpression[?Yield, ?Await] `)`</ins>
+
+      <ins class="block">
+      NestedExpression[Yield, Await] :
+        Expression[+In, ?Yield, ?Await]
+        ThrowExpression[?Yield, ?Await]
+      </ins>
     </emu-grammar>
 
     <emu-clause id="sec-grouping-operator">
@@ -402,19 +408,18 @@ contributors: Ron Buckton, Ecma International
           1. Let _expr_ be the |ParenthesizedExpression| that is covered by |CoverParenthesizedExpressionAndArrowParameterList|.
           1. Return ? Evaluation of _expr_.
         </emu-alg>
+        <del class="block">
         <emu-grammar>ParenthesizedExpression : `(` Expression `)`</emu-grammar>
+        </del>
+        <ins class="block">
+        <emu-grammar>ParenthesizedExpression : `(` NestedExpression `)`</emu-grammar>
+        </ins>
         <emu-alg>
-          1. Return ? Evaluation of |Expression|. This may be of type Reference.
+          1. Return ? Evaluation of <del>|Expression|</del><ins>|NestedExpression|</ins>. This may be of type Reference.
         </emu-alg>
         <emu-note>
-          <p>This algorithm does not apply GetValue to Evaluation of |Expression|. The principal motivation for this is so that operators such as `delete` and `typeof` may be applied to parenthesized expressions.</p>
+          <p>This algorithm does not apply GetValue to Evaluation of <del>|Expression|</del><ins>|NestedExpression|</ins>. The principal motivation for this is so that operators such as `delete` and `typeof` may be applied to parenthesized expressions.</p>
         </emu-note>
-        <ins class="block">
-        <emu-grammar>ParenthesizedExpression : `(` ThrowExpression `)`</emu-grammar>
-        <emu-alg>
-          1. Return ? Evaluation of |ThrowExpression|.
-        </emu-alg>
-        </ins>
       </emu-clause>
     </emu-clause>
 
@@ -676,8 +681,8 @@ contributors: Ron Buckton, Ecma International
           MemberExpression `.` PrivateIdentifier
 
         <ins class="block">
-        ParenthesizedExpression :
-          `(` ThrowExpression `)`
+        NestedExpression :
+          ThrowExpression
         </ins>
 
         PrimaryExpression :
